@@ -1,4 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap');
+
 :root {
     --white: #ffffff;
     --blue: #458ff6;
+    --blue-light: #67c3f3;
+    --blue-dark: #5a98f2;
+    --gray: #7d7987;
+    --black: #1f1534;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Mulish', sans-serif;
 }
