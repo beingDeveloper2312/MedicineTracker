@@ -61,4 +61,70 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTime2"
         app:layout_constraintVertical_bias="0.525"
         tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <CheckBox
+            android:id="@+id/mon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="502dp"
+            android:layout_gravity="1"/>
+
+        <CheckBox
+            android:id="@+id/tus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="T"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="502dp" />
+
+        <CheckBox
+            android:id="@+id/wed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="502dp" />
+
+        <CheckBox
+            android:id="@+id/thu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TH"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="502dp" />
+
+        <CheckBox
+            android:id="@+id/fri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="502dp" />
+        <CheckBox
+            android:id="@+id/sat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="502dp" />
+        <CheckBox
+            android:id="@+id/sun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="502dp" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
