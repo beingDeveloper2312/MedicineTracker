@@ -7,17 +7,19 @@
     tools:context=".add.AddNew">
 
 
-
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="35dp"
+        android:layout_marginRight="20dp"
         android:ems="10"
         android:gravity="start|top"
-        android:textStyle="bold"
         android:hint="Medicine Name"
-        android:inputType="textMultiLine"
+        android:inputType="textLongMessage"
+        android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,17 +40,31 @@
         android:id="@+id/editTextTime2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Dose"
+        android:inputType="textLongMessage"
+        android:textAlignment="center"
         android:textStyle="bold"
-        android:inputType="time"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
         app:layout_constraintVertical_bias="0.028" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Stock"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime2" />
 
     <Button
         android:id="@+id/settime"
@@ -63,27 +79,33 @@
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="2dp"
+        android:gravity="center"
         android:orientation="horizontal"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <CheckBox
             android:id="@+id/mon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="M"
+            android:layout_gravity="center"
+            android:padding="1dp"
+            android:text="Mo"
             tools:layout_editor_absoluteX="87dp"
-            tools:layout_editor_absoluteY="502dp"
-            android:layout_gravity="1"/>
+            tools:layout_editor_absoluteY="502dp" />
 
         <CheckBox
             android:id="@+id/tus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="T"
+            android:padding="1dp"
+            android:text="Tu"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
 
@@ -91,7 +113,8 @@
             android:id="@+id/wed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="W"
+            android:padding="1dp"
+            android:text="We"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
 
@@ -99,7 +122,8 @@
             android:id="@+id/thu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TH"
+            android:padding="1dp"
+            android:text="Th"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
 
@@ -107,21 +131,26 @@
             android:id="@+id/fri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="F"
+            android:padding="1dp"
+            android:text="Fr"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
+
         <CheckBox
             android:id="@+id/sat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="S"
+            android:padding="1dp"
+            android:text="Sa"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
+
         <CheckBox
             android:id="@+id/sun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="S"
+            android:padding="1dp"
+            android:text="Su"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
     </LinearLayout>
