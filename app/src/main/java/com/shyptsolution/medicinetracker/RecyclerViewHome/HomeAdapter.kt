@@ -11,7 +11,7 @@ import com.shyptsolution.medicinetracker.R
 class HomeAdapter(var ReminderList:ArrayList<DashBoardData>):RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     class HomeViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        var medicineName=itemView.findViewById<TextView>(R.id.textView5)
+        var medicineName=itemView.findViewById<TextView>(R.id.MedName)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {

@@ -69,11 +69,11 @@ class MainActivity : AppCompatActivity() {
 
     }
     //Adding option in menu
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater: MenuInflater =menuInflater
-        menuInflater.inflate(R.menu.home_menu,menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        val inflater: MenuInflater =menuInflater
+//        menuInflater.inflate(R.menu.home_menu,menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
     //adding click function on navigation bar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)){
@@ -82,11 +82,11 @@ class MainActivity : AppCompatActivity() {
 
         if(item!=null){
             when(item.itemId){
-                R.id.addnew-> {
+                R.id.dashboard-> {
                     var intent = Intent(this, AddNew::class.java)
                     this.startActivity(intent)
                 }
-                R.id.app_bar_search->{
+                R.id.medication->{
                     searchClicked=true
                 }
             }
