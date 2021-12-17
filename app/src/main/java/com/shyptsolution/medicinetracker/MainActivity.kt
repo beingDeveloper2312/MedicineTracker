@@ -15,10 +15,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.shyptsolution.medicinetracker.Login.Login
+import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardData
+import com.shyptsolution.medicinetracker.RecyclerViewHome.HomeAdapter
 import com.shyptsolution.medicinetracker.add.AddNew
 import java.lang.IllegalStateException
 
@@ -26,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     private var backPressedTime=0L
     private var searchClicked=false
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var homeRecyclerView: RecyclerView
+    lateinit var MedList:ArrayList<DashBoardData>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,6 +43,13 @@ class MainActivity : AppCompatActivity() {
         floatingActionButton.setOnClickListener{
             startActivity(Intent(this,AddNew::class.java))
         }
+        MedList=ArrayList<DashBoardData>()
+        MedList.add(DashBoardData("Helllo",34343))
+        //Recycler View Implemantation
+        homeRecyclerView=findViewById(R.id.recyclerview)
+        homeRecyclerView.layoutManager=LinearLayoutManager(this)
+        homeRecyclerView.setHasFixedSize(true)
+        homeRecyclerView.adapter=HomeAdapter(MedList)
     }
 
     //BAck button close function
