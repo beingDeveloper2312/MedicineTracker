@@ -7,44 +7,42 @@
     tools:context=".add.AddNew">
 
 
+
+
     <EditText
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="60dp"
         android:layout_marginRight="20dp"
         android:ems="10"
         android:gravity="start|top"
+        android:background="@drawable/medname"
         android:hint="Medicine Name"
+        android:paddingTop="2dp"
         android:inputType="textLongMessage"
         android:minHeight="48dp"
         android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
-
-
-
-
-    @@ -40,32 +38,18 @@
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginTop="5dp" />
 
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/medname"
+        android:padding="5dp"
         android:text="0:00 AM"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/settime"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextTextMultiLine"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.744" />
 
     <EditText
         android:id="@+id/editTextTime2"
@@ -53,7 +51,7 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Dose"
-        android:inputType="textLongMessage"
+        android:inputType="number"
         android:minHeight="48dp"
         android:textAlignment="center"
         android:textStyle="bold"
@@ -81,14 +79,14 @@
     <Button
         android:id="@+id/settime"
         android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Set Time"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/time"
-    app:layout_constraintTop_toBottomOf="@+id/editTextTime2"
-    app:layout_constraintVertical_bias="0.525"
-    tools:ignore="MissingConstraints" />
+        android:layout_height="wrap_content"
+        android:text="Set Time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime2"
+        app:layout_constraintVertical_bias="0.692"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -99,15 +97,19 @@
         android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.553">
 
         <CheckBox
             android:id="@+id/mon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="1dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn"
+            android:padding="3dp"
             android:text="Mo"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
@@ -116,7 +118,9 @@
             android:id="@+id/tus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="1dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn"
+            android:padding="3dp"
             android:text="Tu"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
@@ -125,7 +129,9 @@
             android:id="@+id/wed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="1dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn"
+            android:padding="3dp"
             android:text="We"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
@@ -134,7 +140,9 @@
             android:id="@+id/thu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="1dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn"
+            android:padding="3dp"
             android:text="Th"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
@@ -143,7 +151,9 @@
             android:id="@+id/fri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="1dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn"
+            android:padding="3dp"
             android:text="Fr"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
@@ -152,7 +162,9 @@
             android:id="@+id/sat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="1dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn"
+            android:padding="3dp"
             android:text="Sa"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
@@ -161,11 +173,58 @@
             android:id="@+id/sun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="1dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn"
+            android:padding="3dp"
             android:text="Su"
             tools:layout_editor_absoluteX="87dp"
             tools:layout_editor_absoluteY="502dp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medication"
+        android:background="@color/grey"
+        android:textStyle="bold"
+        android:textSize="22dp"
+        android:layout_margin="5dp"
+        android:padding="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:text="Schedule"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintVertical_bias="0.43" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Days"
+
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.073" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
