@@ -8,7 +8,7 @@
 
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/medicineNameinput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -43,11 +43,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/settime"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextMultiLine"
+        app:layout_constraintTop_toTopOf="@+id/medicineNameinput"
         app:layout_constraintVertical_bias="0.602" />
 
     <EditText
-        android:id="@+id/editTextTime2"
+        android:id="@+id/doseinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -61,11 +61,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine"
+        app:layout_constraintTop_toBottomOf="@+id/medicineNameinput"
         app:layout_constraintVertical_bias="0.028" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/stockinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -76,7 +76,7 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime2" />
+        app:layout_constraintTop_toBottomOf="@+id/doseinput" />
 
     <Button
         android:id="@+id/settime"
@@ -86,7 +86,7 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/time"
-    app:layout_constraintTop_toBottomOf="@+id/editTextTime2"
+    app:layout_constraintTop_toBottomOf="@+id/doseinput"
     app:layout_constraintVertical_bias="0.525"
     tools:ignore="MissingConstraints" />
 

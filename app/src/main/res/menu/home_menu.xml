@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_baseline_add_shopping_cart_24"
         android:title="Buy Medicines"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_login_24"/>
 </menu>
