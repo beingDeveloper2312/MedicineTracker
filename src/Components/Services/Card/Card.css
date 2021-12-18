@@ -1,0 +1,16 @@
+.Card{
+    background-color: rgb(236, 241, 255);
+    width: 18%;
+    margin: 1% 1.5%;
+    border-radius: 2%;
+}
+.Card-Content{
+    padding: 5%;
+    color: rgb(80, 80, 80);
+}
+.Card-Content h2{
+    font-size: 1.5vw;
+}
+.Card-Content p{
+    font-size: 0.82vw;
+}

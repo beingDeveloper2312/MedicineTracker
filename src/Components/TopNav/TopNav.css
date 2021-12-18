@@ -1,0 +1,41 @@
+.navbar {
+    padding: 2rem 19.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.navbar__logo {
+    color: var(--white);
+    font-size: 2.6rem;
+    padding: 1rem 1.5rem;
+    border-radius: 50%;
+    background-color: var(--blue);
+    cursor: pointer;
+}
+.navbar__link--container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar__item:not(:last-child) {
+    padding-right: 4rem;
+}
+
+.navbar__link {
+    color: var(--gray);
+    transition: all 0.5 ease-out;
+    font-weight: 400;
+}
+.navbar__link:hover,
+.navbar__link:active {
+    color: var(--black);
+}
+.navbar__link,
+.navbar__link:active,
+.navbar__link:link,
+.navbar__link:visited {
+    font-size: 1.8rem;
+    text-decoration: none;
+}
