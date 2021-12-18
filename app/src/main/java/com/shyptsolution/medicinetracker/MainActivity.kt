@@ -84,6 +84,23 @@ class MainActivity : BaseFragment() {
                     startActivity(Intent(this,Login::class.java))
                 }
 
+                R.id.exitapp->{
+                    finishAffinity()
+                }
+
+                R.id.medication->{
+
+                }
+                R.id.dashboard->{
+
+                }
+                R.id.buymedicine->{
+
+                }
+                R.id.sync->{
+
+                }
+
 
                 else -> throw IllegalStateException("Unexpected value: " + item.itemId)
             }
@@ -139,9 +156,7 @@ class MainActivity : BaseFragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun setView(){
 
-    }
 
 
 
