@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.FragmentManager
+import com.shyptsolution.medicinetracker.Alarm.SaveData
 import com.shyptsolution.medicinetracker.MainActivity
 import com.shyptsolution.medicinetracker.R
 import com.shyptsolution.medicinetracker.RecyclerViewHome.HomeAdapter
@@ -37,6 +38,7 @@ class AddNew : BaseFragment() {
 
     fun setTime(Hours:Int,Minutes:Int){
         var time=findViewById<TextView>(R.id.time)
+        SaveData(this).SetAlarm(Hours,Minutes,"")
         if(Minutes==0 && Hours==0){
             time.setText("00:00")
 
@@ -84,7 +86,8 @@ class AddNew : BaseFragment() {
                         medName.requestFocus()
                     }
                     else{
-                        var medicine=RoomEntity(medName.text.toString(),time.text.toString(),dose.text.toString(),stock.text.toString(),mon.isChecked,tue.isChecked,wed.isChecked,thu.isChecked,
+
+                        var medicine=RoomEntity(medName.text.toString(),time.text.toString(),12,12,dose.text.toString(),stock.text.toString(),mon.isChecked,tue.isChecked,wed.isChecked,thu.isChecked,
                             fri.isChecked,sat.isChecked,sun.isChecked)
 
 

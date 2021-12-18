@@ -1,10 +1,15 @@
 package com.shyptsolution.medicinetracker
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.shyptsolution.medicinetracker.Alarm.Notification
 import com.shyptsolution.medicinetracker.Login.Login
 import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardData
 import com.shyptsolution.medicinetracker.RecyclerViewHome.HomeAdapter
@@ -106,8 +112,12 @@ class MainActivity : BaseFragment() {
             }
             true
         })
-    }
+        createNotificationChannel()
+        val notifyme= Notification()
+        notifyme.Notify(this,"Hello",3)
 
+
+    }
 
 
     //BAck button close function
@@ -156,7 +166,22 @@ class MainActivity : BaseFragment() {
         return super.onOptionsItemSelected(item)
     }
 
-
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.channel_name)
+            val descriptionText = getString(R.string.channel_description)
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel("RaunitVerma", name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
 
 
 

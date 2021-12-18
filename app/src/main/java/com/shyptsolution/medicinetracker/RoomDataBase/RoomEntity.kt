@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey
 data class RoomEntity(
     val medicineName:String,
     val time:String,
+    var hour:Int,
+    var minute:Int,
     var dose:String,
     var stock:String,
     var monday:Boolean,
