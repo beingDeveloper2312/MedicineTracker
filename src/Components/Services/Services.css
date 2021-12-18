@@ -1,0 +1,17 @@
+.Services{
+    padding: 3%;
+}
+.Services h1{
+    text-align: center;
+    font-size: 2.5vw;
+}
+.Cards{
+    display: flex;
+    justify-content: center;
+}
+.dotsSer{
+    margin-top: 5%;
+    margin-left: 72%;
+    position: absolute;
+    z-index: -1;
+}
