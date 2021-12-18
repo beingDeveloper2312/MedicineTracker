@@ -15,14 +15,15 @@ class myBroadcastReceiver:BroadcastReceiver() {
 
         if(intent!!.action.equals(".Alarm")){
             var bundle=intent.extras
-            Toast.makeText(context,bundle?.getString("Message"),Toast.LENGTH_LONG).show()
-            Toast.makeText(context,bundle?.getString("Message"),Toast.LENGTH_LONG).show()
+
             val notifyme=Notification()
             notifyme.Notify(context,"Hello",3)
         }
         else if(intent.action.equals("Snooze")){
-            val notifyme=Notification()
-            notifyme.Notify(context,"Snooze",3)
+//            val notifyme=Notification()
+//            notifyme.Notify(context,"Snooze",3)
+//            Toast.makeText(context,,Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"Snooze",Toast.LENGTH_LONG).show()
         }
         else{
             Toast.makeText(context,"Failed",Toast.LENGTH_LONG).show()

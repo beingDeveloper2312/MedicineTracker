@@ -1,10 +1,7 @@
 package com.shyptsolution.medicinetracker.RoomDataBase
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface DAO {
@@ -12,8 +9,14 @@ interface DAO {
     suspend fun addNote(note:RoomEntity)
 
     @Query("SELECT * FROM medicine_table ")
-    suspend  fun getAllNotes(): List<RoomEntity>
+      fun getAllNotes(): LiveData<List<RoomEntity>>
 
     @Insert
     suspend  fun addMultipleNotes(vararg note:RoomEntity)
+
+    @Update
+    suspend fun updateMed(note:RoomEntity)
+
+    @Delete
+     fun deleteMed(note:RoomEntity)
 }

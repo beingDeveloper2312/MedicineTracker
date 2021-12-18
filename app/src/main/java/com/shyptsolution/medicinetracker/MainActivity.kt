@@ -8,10 +8,13 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -26,12 +29,14 @@ import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardData
 import com.shyptsolution.medicinetracker.RecyclerViewHome.HomeAdapter
 import com.shyptsolution.medicinetracker.RoomDataBase.BaseFragment
 import com.shyptsolution.medicinetracker.RoomDataBase.DataBase
+import com.shyptsolution.medicinetracker.RoomDataBase.NoteViewModel
+import com.shyptsolution.medicinetracker.RoomDataBase.RoomEntity
 import com.shyptsolution.medicinetracker.add.AddNew
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import java.lang.IllegalStateException
 
-class MainActivity : BaseFragment() {
+class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleAuth: GoogleSignInClient
     private var backPressedTime=0L
@@ -39,6 +44,8 @@ class MainActivity : BaseFragment() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var homeRecyclerView: RecyclerView
     lateinit var MedList:ArrayList<DashBoardData>
+    lateinit var viewModel: NoteViewModel
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,18 +58,31 @@ class MainActivity : BaseFragment() {
         floatingActionButton.setOnClickListener{
             startActivity(Intent(this,AddNew::class.java))
         }
-        MedList=ArrayList<DashBoardData>()
         //Recycler View Implemantation
         homeRecyclerView=findViewById(R.id.recyclerview)
 
-        launch {
-            val newnote=DataBase(this@MainActivity).getDao().getAllNotes()
-//            Toast.makeText(this@MainActivity, "note list size "+newnote.size.toString(),Toast.LENGTH_SHORT).show()
-            homeRecyclerView.layoutManager=LinearLayoutManager(this@MainActivity)
-            homeRecyclerView.setHasFixedSize(true)
-            homeRecyclerView.adapter=HomeAdapter(newnote)
+//        launch {
+//            val newnote=DataBase(this@MainActivity).getDao().getAllNotes()
+////            Toast.makeText(this@MainActivity, "note list size "+newnote.size.toString(),Toast.LENGTH_SHORT).show()
+//
+//
+//        }
+        homeRecyclerView.layoutManager=LinearLayoutManager(this@MainActivity)
+        homeRecyclerView.setHasFixedSize(true)
+        var adapter=HomeAdapter(this,this)
+        homeRecyclerView.adapter=adapter
+       viewModel=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
+        viewModel.allNotes.observe(this, Observer {list->
+            list?.let {
+                adapter.updateList(it)
+//                Toast.makeText(this,"Size in Home "+it.size.toString(),Toast.LENGTH_LONG).show()
+
+
 
         }
+
+        })
+
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
@@ -113,8 +133,8 @@ class MainActivity : BaseFragment() {
             true
         })
         createNotificationChannel()
-        val notifyme= Notification()
-        notifyme.Notify(this,"Hello",3)
+//        val notifyme= Notification()
+//        notifyme.Notify(this,"Hello",3)
 
 
     }
@@ -183,6 +203,17 @@ class MainActivity : BaseFragment() {
         }
     }
 
+    fun deleteNote(note:RoomEntity){
+//        DataBase(this@MainActivity).getDao().deleteMed(note)
+
+        launch {
+            Toast.makeText(this@MainActivity,"Deletdmain lainh",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onItemClicked(note:RoomEntity){
+        viewModel.deleteNote(note)
+    }
 
 
 }
