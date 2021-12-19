@@ -1,10 +1,10 @@
 import './TopNav.css';
+import { Link } from 'react-router-dom';
 const TopNav = () => {
     const navItems = [
-        { title: 'Home', href: '#head' },
-        { title: 'Services', href: '#Services' },
-        { title: 'Apps', href: '#Download' },
-        { title: 'Testimonials', href: '#Testimonials' },
+        { title: 'Home', href: '#' },
+        { title: 'Apps', href: '#' },
+        { title: 'Testimonials', href: '#' },
         { title: 'About us', href: '#' },
     ];
     return (
@@ -18,6 +18,9 @@ const TopNav = () => {
                         </a>
                     </div>
                 ))}
+                <Link to="login" className="navbar__link">
+                    Register / Login
+                </Link>
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                    <i class="fa fa-bars"></i>
