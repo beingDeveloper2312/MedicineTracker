@@ -36,15 +36,22 @@ const Login = () => {
             <Button
                 onClick={handleLogin}
                 style={{
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
                     minWidth: '20vw',
                     minHeight: '5vw',
                     fontSize: 'clamp(20px, 1vw, 40px',
                 }}
                 variant="contained"
-                endIcon={<GoogleIcon />}
                 size="large"
             >
                 SIGN IN THROUGH GOOGLE
+                {
+                    <GoogleIcon
+                        style={{ marginLeft: 10, width: 30, height: 30 }}
+                    />
+                }
             </Button>
         </div>
     );
