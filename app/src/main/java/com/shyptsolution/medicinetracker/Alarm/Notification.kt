@@ -1,5 +1,6 @@
 package com.shyptsolution.medicinetracker.Alarm
 
+import android.app.Application
 import android.app.Notification
 import android.app.Notification.DEFAULT_ALL
 import android.app.NotificationManager
@@ -26,25 +27,41 @@ import com.shyptsolution.medicinetracker.add.PopUpTime
 import kotlinx.coroutines.launch
 import android.media.Ringtone
 import android.os.AsyncTask
+import android.provider.MediaStore
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.shyptsolution.medicinetracker.RoomDataBase.NoteViewModel
+import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 import javax.security.auth.callback.Callback
 
 
-class Notification :BaseFragment(){
+class Notification() {
+//   lateinit var  rawPathUri: Uri
+//   lateinit var r:Ringtone
     val NOTIFIYTAG="new request"
     @RequiresApi(Build.VERSION_CODES.P)
     fun Notify(context: Context, message:String, number:Int){
+        Toast.makeText(context,"${number} in Notify",Toast.LENGTH_LONG).show()
 //        launch {
             var alarmSound = RingtoneManager. getDefaultUri (RingtoneManager. TYPE_NOTIFICATION)
             val snoozeIntent = Intent(context, myBroadcastReceiver::class.java).apply {
                 action ="Snooze"
-                putExtra(EXTRA_NOTIFICATION_ID, 0)
+                putExtra(EXTRA_NOTIFICATION_ID, "${ number }")
+                putExtra("MedName",message)
             }
+        snoozeIntent.putExtra("Number","${number}")
+        val snoozeIntent1 = Intent(context, myBroadcastReceiver::class.java).apply {
+            action ="Snooze1"
+            putExtra(EXTRA_NOTIFICATION_ID, number)
+        }
             val vibe = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            vibe.vibrate(1000)
+//            vibe.vibrate(1000)
 //        vibe.vibrate(500,alarmSound)
             val snoozePendingIntent: PendingIntent =
                 PendingIntent.getBroadcast(context, 0, snoozeIntent, 0)
+        val snoozePendingIntent1: PendingIntent =
+            PendingIntent.getBroadcast(context, 0, snoozeIntent1, 0)
             val intent = Intent(context, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
@@ -53,20 +70,25 @@ class Notification :BaseFragment(){
             val fullScreenPendingIntent = PendingIntent.getActivity(context, 0,
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
             val builder= NotificationCompat.Builder(context,"RaunitVerma")
-                .setDefaults(NotificationCompat.DEFAULT_SOUND)
+                .setDefaults(NotificationCompat.PRIORITY_MAX)
                 .setContentTitle("Time to Take "+message+ " Now")
 //            .setContentText(message)
                 .setStyle(NotificationCompat.BigTextStyle()
                     .bigText("Don't Forget To Take The Medicine on Time"))
-                .setNumber(number)
+                .setNumber(0)
+//                .setSound(alarmSound)
+                .setVibrate(longArrayOf(100, 1000, 1000, 100, 1000))
                 .setSound( Uri.parse("android.resource://" + context.packageName + "/" + R.raw.ringtone))
                 .setSmallIcon(R.drawable.notification_icon_background)
                 .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_CALL)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .addAction(R.drawable.ic_baseline_add_24, "Snooze",
                     snoozePendingIntent)
+                .addAction(R.drawable.ic_baseline_add_24, "Long Snooze",
+                    snoozePendingIntent1)
+
 
 
 
@@ -88,26 +110,27 @@ class Notification :BaseFragment(){
 
             }
 
-//        }
-//        val uri=Uri.parse("android.resource:" + context.getPackageName()
-//                + "/" + R.raw.ringtone)
-
-//        launch {
-//            try {
-////                    var mediaPlayer = MediaPlayer.create(context, R.raw.ringtone)
-////        mediaPlayer.start() // no need to call prepare(); create() does that for you
-//                val rawPathUri: Uri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.ringtone);
-//                val r = RingtoneManager.getRingtone(context, rawPathUri)
-//                r.play()
-//                Toast.makeText(context,"Played",Toast.LENGTH_SHORT).show()
-//            } catch (e: Exception) {
-//                Toast.makeText(context,"${e}",Toast.LENGTH_LONG).show()
+//        try {
 //
-//                e.printStackTrace()
-//            }
+//            rawPathUri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.ringtone);
+//            r =RingtoneManager. getRingtone(context, rawPathUri)
+//            r.play()
+//
+//        } catch (e: Exception) {
+//            Toast.makeText(context,"${e}", Toast.LENGTH_LONG).show()
+//
+//            e.printStackTrace()
 //        }
+
+
 
 
     }
+     fun dismiss(context: Context, number: Int){
+         val nm=context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+         nm.cancel(0)
+//         r.stop()
+     }
+
 
 }

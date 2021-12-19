@@ -8,7 +8,7 @@ interface DAO {
     @Insert(onConflict= OnConflictStrategy.REPLACE)
     suspend fun addNote(note:RoomEntity)
 
-    @Query("SELECT * FROM medicine_table ")
+    @Query("SELECT * FROM medicine_table ORDER BY time ASC")
       fun getAllNotes(): LiveData<List<RoomEntity>>
 
     @Insert
@@ -18,5 +18,26 @@ interface DAO {
     suspend fun updateMed(note:RoomEntity)
 
     @Delete
-     fun deleteMed(note:RoomEntity)
+    suspend fun deleteMed(note:RoomEntity)
+
+    @Query("SELECT * FROM medicine_table WHERE monday LIKE :day || '%' ")
+     fun getmonday(day:Boolean=true):LiveData<List<RoomEntity>>
+
+    @Query("SELECT * FROM medicine_table WHERE tuesday LIKE :day || '%' ")
+    fun gettuesday(day:Boolean=true):LiveData<List<RoomEntity>>
+
+    @Query("SELECT * FROM medicine_table WHERE wednesday LIKE :day || '%' ")
+    fun getwednesday(day:Boolean=true):LiveData<List<RoomEntity>>
+
+    @Query("SELECT * FROM medicine_table WHERE tuesday LIKE :day || '%' ")
+    fun getthurs(day:Boolean=true):LiveData<List<RoomEntity>>
+
+    @Query("SELECT * FROM medicine_table WHERE friday LIKE :day || '%' ")
+    fun getfriday(day:Boolean=true):LiveData<List<RoomEntity>>
+
+    @Query("SELECT * FROM medicine_table WHERE saturday LIKE :day || '%' ")
+    fun getsatur(day:Boolean=true):LiveData<List<RoomEntity>>
+
+    @Query("SELECT * FROM medicine_table WHERE sunday LIKE :day || '%' ")
+    fun getsunday(day:Boolean=true):LiveData<List<RoomEntity>>
 }

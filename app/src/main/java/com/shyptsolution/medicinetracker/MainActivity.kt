@@ -4,6 +4,9 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -13,6 +16,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.shyptsolution.medicinetracker.Alarm.Notification
+import com.shyptsolution.medicinetracker.Alarm.SaveData
 import com.shyptsolution.medicinetracker.Login.Login
 import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardData
 import com.shyptsolution.medicinetracker.RecyclerViewHome.HomeAdapter
@@ -33,7 +38,9 @@ import com.shyptsolution.medicinetracker.RoomDataBase.NoteViewModel
 import com.shyptsolution.medicinetracker.RoomDataBase.RoomEntity
 import com.shyptsolution.medicinetracker.add.AddNew
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.lang.IllegalStateException
 
 class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
@@ -72,14 +79,16 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
         var adapter=HomeAdapter(this,this)
         homeRecyclerView.adapter=adapter
        viewModel=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
-        viewModel.allNotes.observe(this, Observer {list->
+        viewModel.todayNotes.observe(this, Observer {list->
             list?.let {
                 adapter.updateList(it)
 //                Toast.makeText(this,"Size in Home "+it.size.toString(),Toast.LENGTH_LONG).show()
+                for (notes in it){
+                    SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
+                }
 
 
-
-        }
+            }
 
         })
 
@@ -133,8 +142,7 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
             true
         })
         createNotificationChannel()
-//        val notifyme= Notification()
-//        notifyme.Notify(this,"Hello",3)
+
 
 
     }
@@ -196,6 +204,7 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
             val channel = NotificationChannel("RaunitVerma", name, importance).apply {
                 description = descriptionText
             }
+            channel.enableLights(true)
             // Register the channel with the system
             val notificationManager: NotificationManager =
                 getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -203,16 +212,20 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
         }
     }
 
-    fun deleteNote(note:RoomEntity){
-//        DataBase(this@MainActivity).getDao().deleteMed(note)
 
-        launch {
-            Toast.makeText(this@MainActivity,"Deletdmain lainh",Toast.LENGTH_SHORT).show()
-        }
-    }
 
     override fun onItemClicked(note:RoomEntity){
         viewModel.deleteNote(note)
+    }
+
+    override fun onItemEdited(note: RoomEntity) {
+        AddNew().onItemEdit(note)
+//        viewModel.deleteNote(note)
+        super.onItemEdited(note)
+    }
+
+    fun getAllNotes():LiveData<List<RoomEntity>>{
+        return viewModel.allNotes
     }
 
 

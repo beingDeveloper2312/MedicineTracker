@@ -3,6 +3,7 @@ package com.shyptsolution.medicinetracker.RecyclerViewHome
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,11 @@ import androidx.room.Room
 import com.shyptsolution.medicinetracker.MainActivity
 import com.shyptsolution.medicinetracker.R
 import com.shyptsolution.medicinetracker.RoomDataBase.*
+import com.shyptsolution.medicinetracker.add.AddNew
 import org.w3c.dom.Text
+import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         var context=cont
@@ -39,13 +44,13 @@ class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
         var medname=ReminderList[position].medicineName
+
+
         holder.medicineName.setText(ReminderList[position].medicineName)
         holder.dose.setText(ReminderList[position].dose)
         holder.stock.setText(ReminderList[position].stock)
-        holder.time.setText(ReminderList[position].time)
-        holder.editbutton.setOnClickListener{
 
-        }
+        holder.time.setText(ReminderList[position].time)
 
         holder.deletebutton.setOnClickListener {
 //            Toast.makeText(context,"Deleted",Toast.LENGTH_SHORT).show()
@@ -60,10 +65,17 @@ class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter
                 }
             }
         }
+
+        holder.editbutton.setOnClickListener {
+//            AddNew().updateData(ReminderList[position])
+//            Toast.makeText(context,"Edited in View",Toast.LENGTH_LONG).show()
+
+//            listener.onItemEdited(ReminderList[position])
+        }
     }
 
     override fun getItemCount(): Int {
-        Toast.makeText(context,"Size in getItemCount "+ReminderList.size.toString(),Toast.LENGTH_LONG).show()
+//        Toast.makeText(context,"Size in getItemCount "+ReminderList.size.toString(),Toast.LENGTH_LONG).show()
         return  ReminderList.size
     }
 
@@ -73,10 +85,29 @@ class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter
         notifyDataSetChanged()
     }
 
+    fun getDayName(day: Int): String? {
+        when (day) {
+            7 -> return "Sunday"
+            1 -> return "Monday"
+            2 -> return "Tuesday"
+            3 -> return "Wednesday"
+            4 -> return "Thursday"
+            5 -> return "Friday"
+            6 -> return "Saturday"
+        }
+        return "Worng Day"
+    }
+
+
+
 
 
     interface NotesAdapter{
         fun onItemClicked(note:RoomEntity){
+
+        }
+
+        fun onItemEdited(note:RoomEntity){
 
         }
     }

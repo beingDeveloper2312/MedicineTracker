@@ -1,21 +1,30 @@
 package com.shyptsolution.medicinetracker.RoomDataBase
 
 import android.app.Application
+import android.content.Context
+import android.media.RingtoneManager
+import android.net.Uri
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
+import com.shyptsolution.medicinetracker.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
+import java.util.*
 
 class NoteViewModel(application: Application) :AndroidViewModel(application) {
     lateinit var allNotes:LiveData<List<RoomEntity>>
+    var todayNotes:LiveData<List<RoomEntity>>
    lateinit var repository:NoteRepoditory
    var context=application.applicationContext
     init {
         val dao=DataBase(application.applicationContext).getDao()
         repository=NoteRepoditory(dao)
         allNotes=repository.allNotes
+        todayNotes=getDayName()
 
     }
 
@@ -26,8 +35,18 @@ class NoteViewModel(application: Application) :AndroidViewModel(application) {
     fun insertNote(note:RoomEntity)=viewModelScope.launch (Dispatchers.IO){
         repository.insert(note)
     }
-    fun updateNote(note:RoomEntity)=viewModelScope.launch {
-        DataBase(context).getDao().updateMed(note)
+    fun getDayName(): LiveData<List<RoomEntity>> {
+        var day=(Calendar.DAY_OF_WEEK)
+        when (day) {
+            7 -> return repository.sunday
+            1 -> return repository.monday
+            2 -> return repository.tuesday
+            3 -> return repository.wednesday
+            4 -> return repository.thursday
+            5 -> return repository.friday
+            6 -> return repository.saturday
+        }
+        return repository.allNotes
     }
 
 }
