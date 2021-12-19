@@ -1,0 +1,45 @@
+.dash {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dash__appbar {
+    padding-left: 2rem;
+    background-color: var(--material-blue);
+    height: 10vh;
+    display: flex;
+    width: 100vw;
+    align-items: center;
+}
+
+.appbar--heading {
+    margin-left: 2rem;
+    font-size: 3rem;
+    color: #fff;
+}
+
+.dash__content {
+    display: flex;
+    min-width: 100vw;
+}
+.dash__drawer {
+    box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.158);
+    transition: all 0.5s ease-out;
+    flex-basis: 15%;
+    backdrop-filter: drop-shadow(4px 4px 10px blue);
+}
+
+.profile__image {
+    border-radius: 50%;
+}
+
+.drawer__header {
+    text-align: center;
+    padding: 1rem;
+}
+
+.menu--icon {
+    font-size: 4rem;
+}

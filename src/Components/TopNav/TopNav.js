@@ -1,8 +1,8 @@
 import './TopNav.css';
+import { Link } from 'react-router-dom';
 const TopNav = () => {
     const navItems = [
         { title: 'Home', href: '#' },
-        { title: 'Find a Doctor', href: '#' },
         { title: 'Apps', href: '#' },
         { title: 'Testimonials', href: '#' },
         { title: 'About us', href: '#' },
@@ -18,6 +18,9 @@ const TopNav = () => {
                         </a>
                     </div>
                 ))}
+                <Link to="login" className="navbar__link">
+                    Register / Login
+                </Link>
             </div>
         </div>
     );
