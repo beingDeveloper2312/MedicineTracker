@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Login.Login"
-    android:background="@drawable/loginnew">
+    android:background="@drawable/lastbg">
 
 
     <ImageView
@@ -21,6 +21,7 @@
 
     <TextView
         android:id="@+id/textView5"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/robotolight"
@@ -41,6 +42,7 @@
         android:fontFamily="@font/robotolight"
         android:text="Tracker"
         android:textSize="40dp"
+        android:visibility="gone"
         android:textStyle="bold"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
