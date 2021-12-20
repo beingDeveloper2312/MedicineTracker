@@ -259,4 +259,11 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.
     fun finishApp() {
         finishAffinity()
     }
+
+    fun updatesotck(stock:Int,id:Int){
+       var viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        ).get(NoteViewModel::class.java)
+    }
 }

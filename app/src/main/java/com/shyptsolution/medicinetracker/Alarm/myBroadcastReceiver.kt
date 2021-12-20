@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import com.shyptsolution.medicinetracker.MainActivity
+import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoard
 import com.shyptsolution.medicinetracker.RoomDataBase.DataBase
 import com.shyptsolution.medicinetracker.RoomDataBase.NoteViewModel
 import com.shyptsolution.medicinetracker.RoomDataBase.RoomEntity
@@ -30,6 +31,7 @@ class myBroadcastReceiver:BroadcastReceiver() {
                 message=""
             }
                 notifyme.Notify(context, message,getNumber())
+//            MainActivity().updatesotck()
 
         }
         else if(intent.action.equals("Snooze")){
