@@ -1,5 +1,6 @@
 package com.shyptsolution.medicinetracker.add
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import com.shyptsolution.medicinetracker.MainActivity
 import com.shyptsolution.medicinetracker.R
+import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoard
+import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardAdapter
 import kotlinx.coroutines.launch
 
 class SyncNow:DialogFragment() {
@@ -42,8 +45,11 @@ class SyncNow:DialogFragment() {
                 "last" to "Lovelace",
                 "born" to 1815
             )
-            MainActivity().SaveToCloud(requireActivity().applicationContext)
+//            MainActivity().SaveToCloud(requireActivity().applicationContext)
 
+//            var intent= Intent(activity,DashBoard()::class.java)
+//            startActivity(intent)
+            DashBoard().StoreOnline()
 //// Add a new document with a generated ID
 //            db.collection("${userEmail }}")
 //                .add(user)

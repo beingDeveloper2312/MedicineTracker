@@ -33,6 +33,7 @@ import com.shyptsolution.medicinetracker.Alarm.Notification
 import com.shyptsolution.medicinetracker.Alarm.SaveData
 import com.shyptsolution.medicinetracker.Login.Login
 import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoard
+import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardAdapter
 import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardData
 import com.shyptsolution.medicinetracker.RecyclerViewHome.HomeAdapter
 import com.shyptsolution.medicinetracker.RoomDataBase.BaseFragment
@@ -51,34 +52,34 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
+class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.dashboard {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleAuth: GoogleSignInClient
-    private var backPressedTime=0L
-    private var searchClicked=false
+    private var backPressedTime = 0L
+    private var searchClicked = false
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var homeRecyclerView: RecyclerView
-    lateinit var MedList:ArrayList<DashBoardData>
+    lateinit var MedList: ArrayList<DashBoardData>
     lateinit var viewModel: NoteViewModel
-    var  db= FirebaseFirestore.getInstance()
-   lateinit var currentusrEmail:String
+    var db = FirebaseFirestore.getInstance()
+    lateinit var currentusrEmail: String
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var driver: DrawerLayout =findViewById(R.id.mainactivity)
-        toggle= ActionBarDrawerToggle(this,driver,R.string.open,R.string.close)
+        var driver: DrawerLayout = findViewById(R.id.mainactivity)
+        toggle = ActionBarDrawerToggle(this, driver, R.string.open, R.string.close)
         driver.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        var floatingActionButton=findViewById<FloatingActionButton>(R.id.floatingActionButton)
-        floatingActionButton.setOnClickListener{
-            startActivity(Intent(this,AddNew::class.java))
+        var floatingActionButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        floatingActionButton.setOnClickListener {
+            startActivity(Intent(this, AddNew::class.java))
         }
         //Recycler View Implemantation
-        homeRecyclerView=findViewById(R.id.recyclerview)
+        homeRecyclerView = findViewById(R.id.recyclerview)
         // Create a new user with a first and last name
-
 
 
 //        launch {
@@ -87,21 +88,24 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
 //
 //
 //        }
-        homeRecyclerView.layoutManager=LinearLayoutManager(this@MainActivity)
+        homeRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
         homeRecyclerView.setHasFixedSize(true)
-        var adapter=HomeAdapter(this,this)
-        homeRecyclerView.adapter=adapter
-       viewModel=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
-        viewModel.todayNotes.observe(this, Observer {list->
+        var adapter = HomeAdapter(this, this)
+        homeRecyclerView.adapter = adapter
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        ).get(NoteViewModel::class.java)
+        viewModel.todayNotes.observe(this, Observer { list ->
             list?.let {
                 adapter.updateList(it)
-                var hashMap=HashMap<Int,Boolean>()
-                var hour= Date().hours
-                var minutes= Date().minutes
-                for(notes in it){
-                    if(hour<= notes.hour && minutes <=notes.minute){
+                var hashMap = HashMap<Int, Boolean>()
+                var hour = Date().hours
+                var minutes = Date().minutes
+                for (notes in it) {
+                    if (hour <= notes.hour && minutes <= notes.minute) {
 //                        Toast.makeText(this,"${notes.hour}+${notes.minute}",Toast.LENGTH_SHORT).show()
-                        SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
+                        SaveData(this).SetAlarm(notes.hour, notes.minute, 0, notes.medicineName)
                     }
 
 
@@ -127,46 +131,46 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
             .requestProfile()
             .build()
 
-        googleAuth=GoogleSignIn.getClient(this,gso)
-        auth= FirebaseAuth.getInstance()
-        var navigationView=findViewById<NavigationView>(R.id.navmenu)
-        var navheader=navigationView.getHeaderView(0)
-        var email=navheader.findViewById<TextView>(R.id.emailid)
-        var username=navheader.findViewById<TextView>(R.id.name)
-        var userPhoto=navheader.findViewById<ImageView>(R.id.userimage)
+        googleAuth = GoogleSignIn.getClient(this, gso)
+        auth = FirebaseAuth.getInstance()
+        var navigationView = findViewById<NavigationView>(R.id.navmenu)
+        var navheader = navigationView.getHeaderView(0)
+        var email = navheader.findViewById<TextView>(R.id.emailid)
+        var username = navheader.findViewById<TextView>(R.id.name)
+        var userPhoto = navheader.findViewById<ImageView>(R.id.userimage)
         email.setText(auth.currentUser!!.email)
         username.setText(auth.currentUser!!.displayName)
         Picasso.get().load(auth.currentUser!!.photoUrl).into(userPhoto)
         navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.logout->{
-                    Toast.makeText(this,"Logout",Toast.LENGTH_SHORT).show()
+                R.id.logout -> {
+                    Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
                     googleAuth.signOut()
                     googleAuth.revokeAccess()
                     auth.signOut()
-                    startActivity(Intent(this,Login::class.java))
+                    startActivity(Intent(this, Login::class.java))
                 }
 
-                R.id.exitapp->{
+                R.id.exitapp -> {
                     finishAffinity()
                 }
 
-                R.id.medication->{
+                R.id.medication -> {
 
                 }
-                R.id.dashboard->{
-                    startActivity(Intent(this,DashBoard::class.java))
+                R.id.dashboard -> {
+                    startActivity(Intent(this, DashBoard::class.java))
                 }
-                R.id.buymedicine->{
+                R.id.buymedicine -> {
                     val k = Intent(Intent.ACTION_VIEW)
                     k.data = Uri.parse("https://www.codingkaro.in")
                     startActivity(k)
                 }
-                R.id.sync->{
-                    val popTime= SyncNow()
-                    var fgm=supportFragmentManager
-                    popTime.show(fgm,"Sync Now")
-                }
+//                R.id.sync -> {
+//                    val popTime = SyncNow()
+//                    var fgm = supportFragmentManager
+//                    popTime.show(fgm, "Sync Now")
+//                }
 
 
                 else -> throw IllegalStateException("Unexpected value: " + item.itemId)
@@ -175,27 +179,27 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
         })
         createNotificationChannel()
 //            onrepeat(this)
-        SaveData(this).SetSnooze(0,0)
+        SaveData(this).SetSnooze(0, 0)
 
     }
 
 
     //BAck button close function
     override fun onBackPressed() {
-        if (searchClicked){
+        if (searchClicked) {
             super.onBackPressed()
-            searchClicked=false
+            searchClicked = false
         }
-         if(backPressedTime+2000>System.currentTimeMillis()){
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
             super.onBackPressed()
             finishAffinity()
+        } else {
+            Toast.makeText(this, "Press Back Again To Exit", Toast.LENGTH_SHORT).show()
         }
-        else{
-            Toast.makeText(this,"Press Back Again To Exit",Toast.LENGTH_SHORT).show()
-        }
-        backPressedTime=System.currentTimeMillis()
+        backPressedTime = System.currentTimeMillis()
 
     }
+
     //Adding option in menu
 //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 //        val inflater: MenuInflater =menuInflater
@@ -204,7 +208,7 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
 //    }
     //adding click function on navigation bar
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true
         }
 
@@ -246,14 +250,13 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
     }
 
 
-
-    override fun onItemClicked(note:RoomEntity){
+    override fun onItemClicked(note: RoomEntity) {
         viewModel.deleteNote(note)
     }
 
     override fun onItemEdited(note: RoomEntity) {
 
-        super.onItemEdited(note)
+//        super.onItemEdited(note)
     }
 
 //    fun onrepeat(context: Context){
@@ -288,7 +291,7 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
 //        })
 //    }
 
-//    fun setAllToday(context: Context){
+    //    fun setAllToday(context: Context){
 //
 //
 //        Toast.makeText(context,"Alarm Set For Today",Toast.LENGTH_SHORT).show()
@@ -309,27 +312,38 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
 //
 //        })
 //    }
-    fun finishApp(){finishAffinity()}
-
-    fun SaveToCloud(context: Context){
-        var mAuth=FirebaseAuth.getInstance()
-        // Create a new user with a first and last name
-        val user = hashMapOf(
-            "first" to "Ada",
-            "last" to "Lovelace",
-            "born" to 1815
-        )
-
-// Add a new document with a generated ID
-        db.collection("${mAuth.currentUser!!.email}")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w("TAG", "Error adding document", e)
-            }
+    fun finishApp() {
+        finishAffinity()
     }
 
-
+//    fun SaveToCloud(context: Context) {
+//        var mAuth = FirebaseAuth.getInstance()
+//
+//        // Create a new user with a first and last name
+//        val user = hashMapOf(
+//            "first" to "Ada",
+//            "last" to "Lovelace",
+//            "born" to 1815
+//        )
+//
+//// Add a new document with a generated ID
+//        db.collection("users")
+//            .add(user)
+//            .addOnSuccessListener { documentReference ->
+////                launch {
+//////                    val newnote = DataBase(this@MainActivity).getDao().getAllNotes()
+//
+//////
+//////
+//////        }
+////                }
+//                var onlinedata=DashBoardAdapter(context,this).databasenotes()
+//                Toast.makeText(context, "${onlinedata.size}", Toast.LENGTH_SHORT).show()
+//            }
+//            .addOnFailureListener { e ->
+//
+//            }
+//
+//
+//    }
 }

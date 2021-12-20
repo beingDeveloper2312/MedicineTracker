@@ -97,6 +97,11 @@ class DashBoardAdapter (cont: Context, var listener: DashBoardAdapter.dashboard)
         }
         return "Worng Day"
     }
+
+    fun databasenotes():ArrayList<RoomEntity>{
+//        Toast.makeText(context,"${ReminderList.size}",Toast.LENGTH_SHORT).show()
+        return ReminderList
+    }
     interface dashboard{
         fun onItemClicked(note:RoomEntity){
 

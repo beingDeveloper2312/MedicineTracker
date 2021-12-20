@@ -2,6 +2,7 @@ package com.shyptsolution.medicinetracker.RoomDataBase
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -22,5 +23,7 @@ abstract class BaseFragment: AppCompatActivity(), CoroutineScope {
         super.onDestroy()
         job.cancel()
     }
+
+
 
 }

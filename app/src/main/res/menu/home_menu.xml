@@ -16,11 +16,7 @@
         android:icon="@drawable/ic_baseline_add_shopping_cart_24"
         android:title="Buy Medicines"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/sync"
-        android:icon="@drawable/ic_baseline_cloud_sync_24"
-        android:title="Sync"
-        app:showAsAction="always"/>
+
     <item
         android:id="@+id/exitapp"
         android:icon="@drawable/ic_baseline_exit_to_app_24"
