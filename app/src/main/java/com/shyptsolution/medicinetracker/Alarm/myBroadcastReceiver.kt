@@ -40,7 +40,7 @@ class myBroadcastReceiver:BroadcastReceiver() {
             Timer().schedule(object : TimerTask() {
                 override fun run() {
                     if(Build.VERSION.SDK_INT>=23) {
-                        MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+2,Date().day,"Your Medicine")
+                        MainAct.justset(Calendar.HOUR_OF_DAY, Calendar.MINUTE+2,Date().day,"Your Medicine")
                     }
                 }
             }, 60000)
@@ -59,7 +59,7 @@ class myBroadcastReceiver:BroadcastReceiver() {
             Timer().schedule(object : TimerTask() {
                 override fun run() {
                     if(Build.VERSION.SDK_INT>=23) {
-                        MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+2,Date().day,"Your Medicine")
+                        MainAct.justset(Calendar.HOUR_OF_DAY, Calendar.MINUTE+2,Date().day,"Your Medicine")
                     }
                 }
             }, 240000)
