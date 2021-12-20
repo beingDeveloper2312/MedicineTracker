@@ -159,22 +159,16 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
 //                    hashmap.set(idd,note)
                     hashmap[idd]=note
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("TAG", "Error getting documents: ", exception)
-            }
+                Toast.makeText(this,"${hashmap.size} hashmap ka size",Toast.LENGTH_SHORT).show()
+                var alreadyexist=HashMap<Int,Boolean>()
+                viewModel.allNotes.observe(this, Observer {list->
+                    list?.let {
+                        Toast.makeText(this, "${it.size} it ka size", Toast.LENGTH_SHORT).show()
 
-        Toast.makeText(this,"${hashmap.size} hashmap ka size",Toast.LENGTH_SHORT).show()
+                        // Create a new user with a first and last name
 
-        var alreadyexist=HashMap<Int,Boolean>()
-        viewModel.allNotes.observe(this, Observer {list->
-            list?.let {
-                Toast.makeText(this, "${it.size} it ka size", Toast.LENGTH_SHORT).show()
-
-                // Create a new user with a first and last name
-
-                for (notes in it) {
-                    alreadyexist.set(notes.id,true)
+                        for (notes in it) {
+                            alreadyexist.set(notes.id,true)
 //                    val user = hashMapOf(
 //                        "id" to notes.id,
 //                        "medicineName" to notes.medicineName.toString(),
@@ -194,23 +188,30 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
 //                        )
 
 
+                        }
+                    }
+
+                })
+                Toast.makeText(this,"${alreadyexist.size} already exist ka size",Toast.LENGTH_SHORT).show()
+
+                for ((key, value) in hashmap.entries) {
+                    if(!alreadyexist.containsKey(key)){
+                        viewModel.insertNote(value)
+                        Toast.makeText(this,"${key}",Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
+
+                    }
                 }
+                Toast.makeText(this,"${hashmap.size} hashmap ka size",Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
             }
 
-        })
-        Toast.makeText(this,"${alreadyexist.size} already exist ka size",Toast.LENGTH_SHORT).show()
 
-        for ((key, value) in hashmap.entries) {
-            if(!alreadyexist.containsKey(key)){
-                viewModel.insertNote(value)
-                Toast.makeText(this,"${key}",Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
 
-            }
-        }
-        Toast.makeText(this,"${hashmap.size} hashmap ka size",Toast.LENGTH_SHORT).show()
 
     }
 
