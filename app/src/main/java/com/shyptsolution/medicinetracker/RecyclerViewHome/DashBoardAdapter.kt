@@ -3,33 +3,22 @@ package com.shyptsolution.medicinetracker.RecyclerViewHome
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
-import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
-import com.shyptsolution.medicinetracker.MainActivity
 import com.shyptsolution.medicinetracker.R
-import com.shyptsolution.medicinetracker.RoomDataBase.*
-import com.shyptsolution.medicinetracker.add.AddNew
-import org.w3c.dom.Text
-import java.time.LocalDate
-import java.util.*
-import kotlin.collections.ArrayList
+import com.shyptsolution.medicinetracker.RoomDataBase.RoomEntity
 
-class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
-        var context=cont
+class DashBoardAdapter (cont: Context, var listener: DashBoardAdapter.dashboard): RecyclerView.Adapter<DashBoardAdapter.HomeViewHolder>() {
+    var context=cont
     val ReminderList=ArrayList<RoomEntity>()
-    class HomeViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+    class HomeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         var medicineName=itemView.findViewById<TextView>(R.id.MedName)
-//        var medName=itemView.findViewById<TextView>(R.id.medicineNameinput)
+        //        var medName=itemView.findViewById<TextView>(R.id.medicineNameinput)
         var dose=itemView.findViewById<TextView>(R.id.Dose)
         var stock=itemView.findViewById<TextView>(R.id.stockleft)
         var time=itemView.findViewById<TextView>(R.id.TimeAlloted)
@@ -38,7 +27,8 @@ class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val itemView=LayoutInflater.from(parent.context).inflate(R.layout.recyclerviewhome,parent,false)
+        val itemView=
+            LayoutInflater.from(parent.context).inflate(R.layout.recyclerviewhome,parent,false)
         return HomeViewHolder(itemView)
     }
 
@@ -82,12 +72,6 @@ class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter
             alertDialog.show()
         }
 
-        holder.editbutton.setOnClickListener {
-//            AddNew().updateData(ReminderList[position])
-//            Toast.makeText(context,"Edited in View",Toast.LENGTH_LONG).show()
-
-//            listener.onItemEdited(ReminderList[position])
-        }
     }
 
     override fun getItemCount(): Int {
@@ -113,12 +97,7 @@ class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter
         }
         return "Worng Day"
     }
-
-
-
-
-
-    interface NotesAdapter{
+    interface dashboard{
         fun onItemClicked(note:RoomEntity){
 
         }
@@ -129,3 +108,5 @@ class HomeAdapter(cont: Context, var listener:NotesAdapter):RecyclerView.Adapter
     }
 
 }
+
+

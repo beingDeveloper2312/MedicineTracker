@@ -25,7 +25,7 @@ class PopUpTime:DialogFragment() {
 
             val MainAct=activity as AddNew
             if(Build.VERSION.SDK_INT>=23) {
-                MainAct.setTime(timepicker.hour, timepicker.minute)
+//                MainAct.setTime(timepicker.hour, timepicker.minute)
             }
             this.dismiss()
             }

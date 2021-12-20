@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
+import com.shyptsolution.medicinetracker.Alarm.SaveData
 import com.shyptsolution.medicinetracker.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,27 +17,30 @@ import java.lang.Exception
 import java.util.*
 
 class NoteViewModel(application: Application) :AndroidViewModel(application) {
-    lateinit var allNotes:LiveData<List<RoomEntity>>
-    var todayNotes:LiveData<List<RoomEntity>>
-   lateinit var repository:NoteRepoditory
-   var context=application.applicationContext
+    lateinit var allNotes: LiveData<List<RoomEntity>>
+    lateinit var todayNotes: LiveData<List<RoomEntity>>
+    lateinit var repository: NoteRepoditory
+    var context = application.applicationContext
+
     init {
-        val dao=DataBase(application.applicationContext).getDao()
-        repository=NoteRepoditory(dao)
-        allNotes=repository.allNotes
-        todayNotes=getDayName()
+        val dao = DataBase(application.applicationContext).getDao()
+        repository = NoteRepoditory(dao)
+        allNotes = repository.allNotes
+        todayNotes = getDayName()
 
     }
 
-    fun deleteNote(note:RoomEntity)=viewModelScope.launch(Dispatchers.IO) {
+    fun deleteNote(note: RoomEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.delete(note)
     }
 
-    fun insertNote(note:RoomEntity)=viewModelScope.launch (Dispatchers.IO){
+    fun insertNote(note: RoomEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(note)
     }
+
     fun getDayName(): LiveData<List<RoomEntity>> {
-        var day=(Calendar.DAY_OF_WEEK)
+        var day = (Date().day)
+//        Toast.makeText(context,"${day}  day",Toast.LENGTH_SHORT).show()
         when (day) {
             7 -> return repository.sunday
             1 -> return repository.monday
@@ -48,5 +52,7 @@ class NoteViewModel(application: Application) :AndroidViewModel(application) {
         }
         return repository.allNotes
     }
-
 }
+
+
+

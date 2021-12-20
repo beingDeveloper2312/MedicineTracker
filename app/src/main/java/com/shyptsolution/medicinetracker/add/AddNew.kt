@@ -42,14 +42,14 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new)
-        var button=findViewById<Button>(R.id.settime)
-        button.setOnClickListener {
-            selectTime()
-        }
+//        var button=findViewById<Button>(R.id.settime)
+//        button.setOnClickListener {
+//            selectTime()
+//        }
                  medName=findViewById<EditText>(R.id.medicineNameinput)
          dose=findViewById<EditText>(R.id.doseinput)
          stock=findViewById<EditText>(R.id.stockinput)
-         time=findViewById<TextView>(R.id.time)
+
          mon=findViewById<CheckBox>(R.id.mon)
          tue=findViewById<CheckBox>(R.id.tus)
          wed=findViewById<CheckBox>(R.id.wed)
@@ -66,26 +66,26 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
         popTime.show(fgm,"fdsf")
     }
 
-    fun setTime(Hours:Int,Minutes:Int){
-        var time=findViewById<TextView>(R.id.time)
-        if(Minutes==0 && Hours==0){
-            time.setText("00:00")
-
-        }
-       else if (Hours==0){
-            time.setText("00"+":"+Minutes.toString())
-
-        }
-        else if(Minutes==0){
-            time.setText(Hours.toString()+":00")
-
-        }
-
-        else{
-            time.setText(Hours.toString()+":"+Minutes.toString())
-
-        }
-    }
+//    fun setTime(Hours:Int,Minutes:Int){
+//        var time=findViewById<TextView>(R.id.time)
+//        if(Minutes==0 && Hours==0){
+//            time.setText("00:00")
+//
+//        }
+//       else if (Hours==0){
+//            time.setText("00"+":"+Minutes.toString())
+//
+//        }
+//        else if(Minutes==0){
+//            time.setText(Hours.toString()+":00")
+//
+//        }
+//
+//        else{
+//            time.setText(Hours.toString()+":"+Minutes.toString())
+//
+//        }
+//    }
 
 
 
@@ -108,7 +108,7 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
                     else{
                         hour=spinner.hour
                         minute=spinner.minute
-                        setTime(hour,minute)
+
                         var medicine=RoomEntity(medName.text.toString(),time.text.toString(),hour,minute,dose.text.toString(),stock.text.toString(),mon.isChecked,tue.isChecked,wed.isChecked,thu.isChecked,
                             fri.isChecked,sat.isChecked,sun.isChecked)
 

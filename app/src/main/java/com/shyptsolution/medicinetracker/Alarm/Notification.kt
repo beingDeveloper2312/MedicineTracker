@@ -9,6 +9,8 @@ import android.app.NotificationManager.IMPORTANCE_MAX
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.BitmapFactory
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.net.Uri
@@ -29,31 +31,35 @@ import android.media.Ringtone
 import android.os.AsyncTask
 import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.shyptsolution.medicinetracker.RoomDataBase.NoteViewModel
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
+import java.util.*
 import javax.security.auth.callback.Callback
 
 
-class Notification() {
+class Notification:BaseFragment() {
 //   lateinit var  rawPathUri: Uri
 //   lateinit var r:Ringtone
     val NOTIFIYTAG="new request"
     @RequiresApi(Build.VERSION_CODES.P)
     fun Notify(context: Context, message:String, number:Int){
-        Toast.makeText(context,"${number} in Notify",Toast.LENGTH_LONG).show()
+//        Toast.makeText(context,"${number} in Notify",Toast.LENGTH_LONG).show()
 //        launch {
             var alarmSound = RingtoneManager. getDefaultUri (RingtoneManager. TYPE_NOTIFICATION)
             val snoozeIntent = Intent(context, myBroadcastReceiver::class.java).apply {
                 action ="Snooze"
-                putExtra(EXTRA_NOTIFICATION_ID, "${ number }")
+                putExtra("EXTRA_NOTIFICATION_ID", "${ number }")
                 putExtra("MedName",message)
             }
         snoozeIntent.putExtra("Number","${number}")
         val snoozeIntent1 = Intent(context, myBroadcastReceiver::class.java).apply {
             action ="Snooze1"
-            putExtra(EXTRA_NOTIFICATION_ID, number)
+            putExtra("EXTRA_NOTIFICATION_ID", "${ number }")
+            putExtra("MedName",message)
         }
             val vibe = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 //            vibe.vibrate(1000)
@@ -71,15 +77,15 @@ class Notification() {
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
             val builder= NotificationCompat.Builder(context,"RaunitVerma")
                 .setDefaults(NotificationCompat.PRIORITY_MAX)
-                .setContentTitle("Time to Take "+message+ " Now")
+                .setContentTitle("Take "+message+ " Now")
 //            .setContentText(message)
                 .setStyle(NotificationCompat.BigTextStyle()
                     .bigText("Don't Forget To Take The Medicine on Time"))
-                .setNumber(0)
+                .setNumber(number)
 //                .setSound(alarmSound)
                 .setVibrate(longArrayOf(100, 1000, 1000, 100, 1000))
                 .setSound( Uri.parse("android.resource://" + context.packageName + "/" + R.raw.ringtone))
-                .setSmallIcon(R.drawable.notification_icon_background)
+                .setSmallIcon(R.drawable.ic_baseline_add_shopping_cart_24)
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_CALL)
@@ -101,7 +107,7 @@ class Notification() {
             val nm=context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.ECLAIR) {
-                nm.notify(NOTIFIYTAG, 0, builder.build())
+                nm.notify(NOTIFIYTAG, number, builder.build())
 //            Toast.makeText(context,"In first", Toast.LENGTH_LONG).show()
 
             }else{
@@ -128,9 +134,12 @@ class Notification() {
     }
      fun dismiss(context: Context, number: Int){
          val nm=context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-         nm.cancel(0)
+//         Toast.makeText(context,"${number}",Toast.LENGTH_SHORT).show()
+         nm.cancel(number)
 //         r.stop()
      }
+
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.shyptsolution.medicinetracker.RoomDataBase
 
+import androidx.constraintlayout.helper.widget.Flow
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -19,6 +20,9 @@ interface DAO {
 
     @Delete
     suspend fun deleteMed(note:RoomEntity)
+
+//    @Query("SELECT * FROM medicine_table WHERE medicineName LIKE :searchQuery or dose LIKE :searchQuery or stock LIKE :searchQuery")
+//    fun searchData(searchQuery:String): Flow<List<RoomEntity>>
 
     @Query("SELECT * FROM medicine_table WHERE monday LIKE :day || '%' ")
      fun getmonday(day:Boolean=true):LiveData<List<RoomEntity>>

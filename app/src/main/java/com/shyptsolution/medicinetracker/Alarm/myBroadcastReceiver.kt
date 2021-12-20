@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.Handler
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
@@ -16,14 +17,12 @@ import com.shyptsolution.medicinetracker.add.AddNew
 import java.util.*
 
 class myBroadcastReceiver:BroadcastReceiver() {
-    var appDatabase: LiveData<List<RoomEntity>>? = null
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onReceive(context: Context, intent: Intent?) {
 //        Toast.makeText(context,"Alarm Recived",Toast.LENGTH_LONG).show()
 
         if(intent!!.action.equals(".Alarm")){
-            var bundle=intent.extras
-            var number=intent.getStringExtra("Number")!!.toInt()
             val notifyme=Notification()
            var message= intent.getStringExtra("Message").toString()
             if(message==null){
@@ -31,30 +30,86 @@ class myBroadcastReceiver:BroadcastReceiver() {
             }
                 notifyme.Notify(context, message,getNumber())
 
-
-//            Toast.makeText(context,"${number}",Toast.LENGTH_LONG).show()
         }
         else if(intent.action.equals("Snooze")){
-            Toast.makeText(context," in snooze",Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"Snoozed For Two Minutes",Toast.LENGTH_LONG).show()
             val MainAct=SaveData(context)
             var message=intent.getStringExtra("MedName")
-            if(Build.VERSION.SDK_INT>=23) {
-                MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+2,Calendar.DAY_OF_WEEK,"${message}")
-            }
-            var number=intent.getIntExtra("Number",0)
-//            if(number==null){
-//                number=0
-//            }
+
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    if(Build.VERSION.SDK_INT>=23) {
+                        MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+1,Date().day,message.toString())
+                    }
+                }
+            }, 60000)
+            var number=intent.getIntExtra("EXTRA_NOTIFICATION_ID",0)
             Notification().dismiss(context,number )
-            Toast.makeText(context,"in snooze ${number}",Toast.LENGTH_LONG).show()
         }
-//        else if(intent.action.equals("Snooze1")){
-//            val MainAct=SaveData(context)
-//            if(Build.VERSION.SDK_INT>=23) {
-//                MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+5,"")
-//            }
-//            Toast.makeText(context,"Snoozed for Five Minutes",Toast.LENGTH_LONG).show()
-//        }
+        else if(intent.action.equals("Snooze1")){
+            Toast.makeText(context,"Snoozed For Five Minutes",Toast.LENGTH_LONG).show()
+
+            val MainAct=SaveData(context)
+            var message=intent.getStringExtra("MedName")
+
+            var number=intent.getIntExtra("EXTRA_NOTIFICATION_ID",0)
+            Notification().dismiss(context,number )
+            Toast.makeText(context,"${number} in snooze 1",Toast.LENGTH_SHORT).show()
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    if(Build.VERSION.SDK_INT>=23) {
+                        MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+1,Date().day,message.toString())
+                    }
+                }
+            }, 240000)
+        }
+        else if(intent.action.equals("Repeat")){
+//            MainActivity().setAllToday(context)
+//            MainActivity().onrepeat(context)
+//            context.startActivity(intent)
+                var min=Date().minutes
+            var hour=Date().hours
+            if(min==0 && hour==0){
+
+                Timer().schedule(object : TimerTask() {
+                    override fun run() {
+                        var inttent=Intent(context,MainActivity::class.java)
+                        inttent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        context.startActivity(inttent)
+                        Timer().schedule(object : TimerTask() {
+                            override fun run() {
+                                Toast.makeText(context,"Completed",Toast.LENGTH_SHORT).show()
+
+                                MainActivity().finishApp()
+                            }
+                        }, 2000)
+                    }
+                }, 1000)
+
+
+
+            }
+
+
+//            Toast.makeText(context,"Inside Repeat",Toast.LENGTH_SHORT).show()
+        }
+        else if(intent.action.equals("android.intent.category.DEFAULT")){
+            Timer().schedule(object : TimerTask() {
+                override fun run() {
+                    var inttent=Intent(context,MainActivity::class.java)
+                    inttent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    context.startActivity(inttent)
+                    Timer().schedule(object : TimerTask() {
+                        override fun run() {
+                            Toast.makeText(context,"Completed",Toast.LENGTH_SHORT).show()
+
+                            MainActivity().finishApp()
+                        }
+                    }, 2000)
+                }
+            }, 1000)
+
+        }
         else{
             Toast.makeText(context,"Failed",Toast.LENGTH_LONG).show()
         }
@@ -62,10 +117,5 @@ class myBroadcastReceiver:BroadcastReceiver() {
 
     fun getNumber(): Int = (Date().time / 1000L % Integer.MAX_VALUE).toInt()
 
-    private fun initiateDatabase(context: Context) {
-        if (appDatabase== null)
-            appDatabase =MainActivity().getAllNotes()
 
-
-    }
 }

@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.shyptsolution.medicinetracker.Alarm.Notification
 import com.shyptsolution.medicinetracker.Alarm.SaveData
 import com.shyptsolution.medicinetracker.Login.Login
+import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoard
 import com.shyptsolution.medicinetracker.RecyclerViewHome.DashBoardData
 import com.shyptsolution.medicinetracker.RecyclerViewHome.HomeAdapter
 import com.shyptsolution.medicinetracker.RoomDataBase.BaseFragment
@@ -42,6 +43,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.lang.IllegalStateException
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
     private lateinit var auth: FirebaseAuth
@@ -52,6 +56,7 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
     lateinit var homeRecyclerView: RecyclerView
     lateinit var MedList:ArrayList<DashBoardData>
     lateinit var viewModel: NoteViewModel
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,10 +87,25 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
         viewModel.todayNotes.observe(this, Observer {list->
             list?.let {
                 adapter.updateList(it)
-//                Toast.makeText(this,"Size in Home "+it.size.toString(),Toast.LENGTH_LONG).show()
-                for (notes in it){
-                    SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
+                var hashMap=HashMap<Int,Boolean>()
+                var hour= Date().hours
+                var minutes= Date().minutes
+                for(notes in it){
+                    if(hour<= notes.hour && minutes <=notes.minute){
+//                        Toast.makeText(this,"${notes.hour}+${notes.minute}",Toast.LENGTH_SHORT).show()
+                        SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
+                    }
+
+
                 }
+//                Toast.makeText(this,"Size in Home "+it.size.toString(),Toast.LENGTH_LONG).show()
+//                for (notes in it){
+//                    if(!hashMap.containsKey(notes.id)){
+//                        SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
+//                        hashMap.set(notes.id,true)
+//                    }
+//
+//                }
 
 
             }
@@ -127,10 +147,12 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
 
                 }
                 R.id.dashboard->{
-
+                    startActivity(Intent(this,DashBoard::class.java))
                 }
                 R.id.buymedicine->{
-
+                    val k = Intent(Intent.ACTION_VIEW)
+                    k.data = Uri.parse("https://www.codingkaro.in")
+                    startActivity(k)
                 }
                 R.id.sync->{
 
@@ -142,8 +164,8 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
             true
         })
         createNotificationChannel()
-
-
+//            onrepeat(this)
+        SaveData(this).SetSnooze(0,0)
 
     }
 
@@ -205,6 +227,7 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
                 description = descriptionText
             }
             channel.enableLights(true)
+            channel.sound
             // Register the channel with the system
             val notificationManager: NotificationManager =
                 getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -219,14 +242,64 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
     }
 
     override fun onItemEdited(note: RoomEntity) {
-        AddNew().onItemEdit(note)
-//        viewModel.deleteNote(note)
+
         super.onItemEdited(note)
     }
 
-    fun getAllNotes():LiveData<List<RoomEntity>>{
-        return viewModel.allNotes
-    }
+//    fun onrepeat(context: Context){
+//        var viewmode=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
+//        Toast.makeText(context,"Inside Main Activity",Toast.LENGTH_SHORT).show()
+//        viewmode.todayNotes.observe(this, Observer {list->
+//            list?.let {
+//
+//                var hashMap=HashMap<Int,Boolean>()
+//                var hour= Date().hours
+//                var minutes= Date().minutes
+//                for(notes in it){
+//                    if(hour<= notes.hour && minutes <=notes.minute){
+////                        Toast.makeText(this,"${notes.hour}+${notes.minute}",Toast.LENGTH_SHORT).show()
+//                        SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
+//                    }
+//
+//
+//                }
+////                Toast.makeText(this,"Size in Home "+it.size.toString(),Toast.LENGTH_LONG).show()
+////                for (notes in it){
+////                    if(!hashMap.containsKey(notes.id)){
+////                        SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
+////                        hashMap.set(notes.id,true)
+////                    }
+////
+////                }
+//
+//
+//            }
+//
+//        })
+//    }
+
+//    fun setAllToday(context: Context){
+//
+//
+//        Toast.makeText(context,"Alarm Set For Today",Toast.LENGTH_SHORT).show()
+//        var hashMap= java.util.HashMap<Int, Boolean>()
+//        viewModel.todayNotes.observe(this, Observer {list->
+//            list?.let {
+//                var hour= Calendar.HOUR
+//                var minutes= Calendar.MINUTE
+//                for(notes in it){
+//                    if(hour<= notes.hour && minutes <=notes.minute){
+//                        SaveData(context).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
+//                    }
+//
+//
+//                }
+//
+//            }
+//
+//        })
+//    }
+    fun finishApp(){finishAffinity()}
 
 
 }

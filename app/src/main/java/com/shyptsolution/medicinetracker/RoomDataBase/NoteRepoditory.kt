@@ -3,6 +3,7 @@ package com.shyptsolution.medicinetracker.RoomDataBase
 import android.provider.ContactsContract
 import androidx.lifecycle.LiveData
 import androidx.room.Room
+import java.util.concurrent.Flow
 
 class NoteRepoditory(var noteDao:DAO) :BaseFragment(){
     var allNotes:LiveData<List<RoomEntity>> = DataBase(this).getDao().getAllNotes()
@@ -20,6 +21,11 @@ class NoteRepoditory(var noteDao:DAO) :BaseFragment(){
     suspend fun delete(note: RoomEntity){
         noteDao.deleteMed(note)
     }
+
+//    suspend fun search(searchQuer:String){
+//        var searchList:Flow<List<RoomEntity>> =DataBase(this).getDao().searchData(searchQuer)
+//        return searchList
+//    }
 
 
 }
