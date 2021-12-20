@@ -14,6 +14,7 @@ import com.shyptsolution.medicinetracker.RoomDataBase.DataBase
 import com.shyptsolution.medicinetracker.RoomDataBase.NoteViewModel
 import com.shyptsolution.medicinetracker.RoomDataBase.RoomEntity
 import com.shyptsolution.medicinetracker.add.AddNew
+import kotlinx.coroutines.delay
 import java.util.*
 
 class myBroadcastReceiver:BroadcastReceiver() {
@@ -93,19 +94,21 @@ class myBroadcastReceiver:BroadcastReceiver() {
 
 //            Toast.makeText(context,"Inside Repeat",Toast.LENGTH_SHORT).show()
         }
-        else if(intent.action.equals("android.intent.action.BOOT_COMPLETED\"")){
+        else if(intent.action.equals("android.intent.action.BOOT_COMPLETED")){
+            Toast.makeText(context,"Boot Completed",Toast.LENGTH_LONG).show()
+
             Timer().schedule(object : TimerTask() {
+
                 override fun run() {
                     var inttent=Intent(context,MainActivity::class.java)
                     inttent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     context.startActivity(inttent)
-                    Timer().schedule(object : TimerTask() {
-                        override fun run() {
-                            Toast.makeText(context,"Completed",Toast.LENGTH_SHORT).show()
-
-                            MainActivity().finishApp()
-                        }
-                    }, 2000)
+//                    Timer().schedule(object :TimerTask(){
+//                        override fun run() {
+//                            MainActivity().finishApp()
+//                        }
+//
+//                    }, 2000)
                 }
             }, 1000)
 
