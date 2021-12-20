@@ -155,15 +155,13 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.
                     finishAffinity()
                 }
 
-                R.id.medication -> {
 
-                }
                 R.id.dashboard -> {
                     startActivity(Intent(this, DashBoard::class.java))
                 }
                 R.id.buymedicine -> {
                     val k = Intent(Intent.ACTION_VIEW)
-                    k.data = Uri.parse("https://www.codingkaro.in")
+                    k.data = Uri.parse("https://pharmeasy.in/")
                     startActivity(k)
                 }
 //                R.id.sync -> {

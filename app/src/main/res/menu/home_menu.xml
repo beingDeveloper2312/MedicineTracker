@@ -6,11 +6,11 @@
         android:icon="@drawable/ic_baseline_dashboard_24"
         android:title="DashBoard"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/medication"
-        android:icon="@drawable/ic_baseline_medical_services_24"
-        android:title="Medication"
-        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/medication"-->
+<!--        android:icon="@drawable/ic_baseline_medical_services_24"-->
+<!--        android:title="Medication"-->
+<!--        app:showAsAction="always" />-->
     <item
         android:id="@+id/buymedicine"
         android:icon="@drawable/ic_baseline_add_shopping_cart_24"

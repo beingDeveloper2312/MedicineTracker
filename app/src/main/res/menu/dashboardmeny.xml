@@ -11,12 +11,14 @@
         android:id="@+id/sync"
         android:icon="@drawable/ic_baseline_cloud_upload_24"
         android:title="Save To Cloud"
+        app:showAsAction="withText|always"
         />
 
     <item
         android:id="@+id/download"
         android:icon="@drawable/ic_baseline_cloud_download_24"
         android:title="Fetch From Cloud"
+        app:showAsAction="always|withText"
         />
 
 </menu>
