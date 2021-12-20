@@ -28,7 +28,7 @@ class DashBoardAdapter (cont: Context, var listener: DashBoardAdapter.dashboard)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val itemView=
-            LayoutInflater.from(parent.context).inflate(R.layout.recyclerviewhome,parent,false)
+            LayoutInflater.from(parent.context).inflate(R.layout.dashboardlrecycler,parent,false)
         return HomeViewHolder(itemView)
     }
 

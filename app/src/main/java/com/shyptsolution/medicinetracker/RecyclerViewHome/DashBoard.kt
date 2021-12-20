@@ -95,8 +95,8 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
                     //set title for alert dialog
                     builder.setTitle("Save To Cloud?")
                     //set message for alert dialog
-                    builder.setMessage("This will save your to cloud which can be accessed any time.")
-                    builder.setIcon(android.R.drawable.stat_notify_sync)
+                    builder.setMessage("This will save your data to cloud which can be accessed any time.")
+                    builder.setIcon(R.drawable.ic_baseline_cloud_upload_24)
 
                     //performing positive action
                     builder.setPositiveButton("Ok"){dialogInterface, which ->
@@ -121,28 +121,30 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
 
                 }
                 R.id.download->{
-                    getfromdatabase()
-                    Toast.makeText(this,"Successfully Fetched From Cloud",Toast.LENGTH_SHORT).show()
+//                    getfromdatabase()
+//                    Toast.makeText(this,"Successfully Fetched From Cloud",Toast.LENGTH_SHORT).show()
 
                     val builder = AlertDialog.Builder(this)
                     //set title for alert dialog
-                    builder.setTitle("Are You Sure?")
+                    builder.setTitle("Fetch From Cloud?")
                     //set message for alert dialog
-                    builder.setMessage("Tap Yes To Delete This Reminder.")
-                    builder.setIcon(android.R.drawable.ic_delete)
+                    builder.setMessage("This will fetch your saved data from cloud.")
+                    builder.setIcon(R.drawable.ic_baseline_cloud_download_24)
 
                     //performing positive action
-                    builder.setPositiveButton("Yes"){dialogInterface, which ->
+                    builder.setPositiveButton("Ok"){dialogInterface, which ->
 //                Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
-
+                        getfromdatabase()
+                        Toast.makeText(this,"Successfully Fetched From Cloud",Toast.LENGTH_SHORT).show()
                     }
                     //performing cancel action
 //            builder.setNeutralButton("Cancel"){dialogInterface , which ->
 //                Toast.makeText(context,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
 //            }
                     //performing negative action
-                    builder.setNegativeButton("No"){dialogInterface, which ->
+                    builder.setNegativeButton("Cancel"){dialogInterface, which ->
 //                Toast.makeText(context,"clicked No",Toast.LENGTH_LONG).show()
+
                     }
                     // Create the AlertDialog
                     val alertDialog: AlertDialog = builder.create()

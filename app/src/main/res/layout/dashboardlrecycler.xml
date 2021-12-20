@@ -152,52 +152,68 @@
 
             <CheckBox
                 android:id="@+id/checkBox"
+                android:visibility="gone"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckBox" />
+                android:text="Mo" />
 
             <CheckBox
                 android:id="@+id/checkBox2"
+                android:visibility="gone"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckBox" />
+                android:text="Tu" />
 
             <CheckBox
                 android:id="@+id/checkBox7"
+                android:visibility="gone"
+
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckBox" />
+                android:text="Wed" />
 
             <CheckBox
                 android:id="@+id/checkBox6"
+                android:visibility="gone"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckBox" />
+                android:text="Thu" />
 
             <CheckBox
                 android:id="@+id/checkBox3"
+
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_weight="1"
-                android:text="CheckBox" />
+                android:text="Fri" />
 
             <CheckBox
                 android:id="@+id/checkBox5"
+                android:visibility="gone"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckBox" />
+                android:text="Sat" />
 
             <CheckBox
                 android:id="@+id/checkBox4"
+                android:visibility="gone"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckBox" />
+                android:text="Sun" />
         </LinearLayout>
     </LinearLayout>
 
