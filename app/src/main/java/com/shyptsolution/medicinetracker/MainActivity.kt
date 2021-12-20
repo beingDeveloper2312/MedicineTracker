@@ -9,6 +9,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.annotation.RequiresApi
@@ -27,6 +28,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.shyptsolution.medicinetracker.Alarm.Notification
 import com.shyptsolution.medicinetracker.Alarm.SaveData
 import com.shyptsolution.medicinetracker.Login.Login
@@ -58,7 +60,8 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
     lateinit var homeRecyclerView: RecyclerView
     lateinit var MedList:ArrayList<DashBoardData>
     lateinit var viewModel: NoteViewModel
-
+    var  db= FirebaseFirestore.getInstance()
+   lateinit var currentusrEmail:String
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +77,9 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
         }
         //Recycler View Implemantation
         homeRecyclerView=findViewById(R.id.recyclerview)
+        // Create a new user with a first and last name
+
+
 
 //        launch {
 //            val newnote=DataBase(this@MainActivity).getDao().getAllNotes()
@@ -304,6 +310,26 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
 //        })
 //    }
     fun finishApp(){finishAffinity()}
+
+    fun SaveToCloud(context: Context){
+        var mAuth=FirebaseAuth.getInstance()
+        // Create a new user with a first and last name
+        val user = hashMapOf(
+            "first" to "Ada",
+            "last" to "Lovelace",
+            "born" to 1815
+        )
+
+// Add a new document with a generated ID
+        db.collection("${mAuth.currentUser!!.email}")
+            .add(user)
+            .addOnSuccessListener { documentReference ->
+                Log.d("TAG", "DocumentSnapshot added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("TAG", "Error adding document", e)
+            }
+    }
 
 
 }
