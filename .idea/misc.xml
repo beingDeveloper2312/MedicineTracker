@@ -5,7 +5,12 @@
       <map>
         <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/layout/activity_dash_board.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/layout/activity_login.xml" value="0.4" />
+        <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/layout/dashboardcard.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/layout/dashboardlrecycler.xml" value="0.10104166666666667" />
+        <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/layout/navheader.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/layout/popuptime.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/layout/recyclerviewhome.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/menu/addnewmenu.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/menu/dashboardmeny.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/Lenovo/Downloads/MedicineTracker/app/src/main/res/menu/home_menu.xml" value="0.21927083333333333" />
