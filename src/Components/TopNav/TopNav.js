@@ -1,5 +1,6 @@
 import './TopNav.css';
 import { Link } from 'react-router-dom';
+
 const TopNav = () => {
     const navItems = [
         { title: 'Home', href: '#' },
@@ -9,7 +10,7 @@ const TopNav = () => {
     ];
     return (
         <div className="navbar">
-            <div className="navbar__logo">M</div>
+            <div ><img className="navbar__logo" src = {Image} width = "20%"></img></div>
             <div className="navbar__link--container">
                 {navItems.map((item, i) => (
                     <div key={i} className="navbar__item">

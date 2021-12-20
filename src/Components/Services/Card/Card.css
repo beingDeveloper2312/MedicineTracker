@@ -14,3 +14,17 @@
 .Card-Content p{
     font-size: 0.82vw;
 }
+
+@media only screen and (max-width: 768px) {
+    .Card{
+        width: 50%;
+    }
+
+    .Card-Content h2{
+        font-size: 2.5vw;
+        line-height: 1.5;
+    }
+    .Card-Content p{
+        font-size: 1.82vw;
+    }
+}
