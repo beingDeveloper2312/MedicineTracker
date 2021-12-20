@@ -57,7 +57,8 @@ const Dashboard = () => {
             const date = new Date();
             const key = `${date.getFullYear()}${date.getMonth()}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}${date.getTime()}`;
             try {
-                await setDoc(doc(db, currentUser.email, key), med);
+                const newMed = doc(db, currentUser.email, key);
+                await setDoc(newMed, med);
             } catch (e) {
                 console.log('error: ', e);
             }

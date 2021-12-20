@@ -20,14 +20,21 @@ const Post = () => {
         saturday: false,
         sunday: false,
     });
+
+    const [timeHour, setTimeHour] = useState();
     const handleAdd = () => {
         console.log('handleAdd');
+        setTimeHour({
+            hour: Number(time.slice(0, 2)),
+            minute: Number(time.slice(3, 2)),
+        });
         const med = {
             name,
             dose,
             stock,
             time,
             ...days,
+            ...timeHour,
         };
         setMedList((prev) => {
             return [...prev, med];

@@ -15,6 +15,8 @@ export const medList = atom({
             friday: false,
             saturday: false,
             sunday: false,
+            hour: 0,
+            minute: 0,
         },
     ],
 });
