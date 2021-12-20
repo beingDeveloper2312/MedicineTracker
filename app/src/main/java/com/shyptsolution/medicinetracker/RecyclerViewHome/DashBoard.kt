@@ -1,6 +1,7 @@
 package com.shyptsolution.medicinetracker.RecyclerViewHome
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -88,15 +89,66 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
                 R.id.sync-> {
 //                    var intent = Intent(this, AddNew::class.java)
 //                    this.startActivity(intent)
-                    StoreOnline()
-                    Toast.makeText(this,"Saved To Cloud",Toast.LENGTH_SHORT).show()
-//                    val popTime = SyncNow()
-//                    var fgm = supportFragmentManager
-//                    popTime.show(fgm, "Sync Now")
+
+
+                    val builder = AlertDialog.Builder(this)
+                    //set title for alert dialog
+                    builder.setTitle("Save To Cloud?")
+                    //set message for alert dialog
+                    builder.setMessage("This will save your to cloud which can be accessed any time.")
+                    builder.setIcon(android.R.drawable.stat_notify_sync)
+
+                    //performing positive action
+                    builder.setPositiveButton("Ok"){dialogInterface, which ->
+//                Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                        StoreOnline()
+                        Toast.makeText(this,"Saved To Cloud",Toast.LENGTH_SHORT).show()
+                    }
+                    //performing cancel action
+//            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+//                Toast.makeText(context,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
+//            }
+                    //performing negative action
+                    builder.setNegativeButton("Cancel"){dialogInterface, which ->
+//                Toast.makeText(context,"clicked No",Toast.LENGTH_LONG).show()
+
+                    }
+                    // Create the AlertDialog
+                    val alertDialog: AlertDialog = builder.create()
+                    // Set other dialog properties
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+
                 }
                 R.id.download->{
                     getfromdatabase()
                     Toast.makeText(this,"Successfully Fetched From Cloud",Toast.LENGTH_SHORT).show()
+
+                    val builder = AlertDialog.Builder(this)
+                    //set title for alert dialog
+                    builder.setTitle("Are You Sure?")
+                    //set message for alert dialog
+                    builder.setMessage("Tap Yes To Delete This Reminder.")
+                    builder.setIcon(android.R.drawable.ic_delete)
+
+                    //performing positive action
+                    builder.setPositiveButton("Yes"){dialogInterface, which ->
+//                Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+
+                    }
+                    //performing cancel action
+//            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+//                Toast.makeText(context,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
+//            }
+                    //performing negative action
+                    builder.setNegativeButton("No"){dialogInterface, which ->
+//                Toast.makeText(context,"clicked No",Toast.LENGTH_LONG).show()
+                    }
+                    // Create the AlertDialog
+                    val alertDialog: AlertDialog = builder.create()
+                    // Set other dialog properties
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
 
                 }
 
