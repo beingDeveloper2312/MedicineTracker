@@ -38,6 +38,10 @@ class NoteViewModel(application: Application) :AndroidViewModel(application) {
         repository.insert(note)
     }
 
+    fun updatestock(stock:Int, id:Int){
+        repository.updatestock(stock,id)
+    }
+
     fun getDayName(): LiveData<List<RoomEntity>> {
         var day = (Date().day)
 //        Toast.makeText(context,"${day}  day",Toast.LENGTH_SHORT).show()

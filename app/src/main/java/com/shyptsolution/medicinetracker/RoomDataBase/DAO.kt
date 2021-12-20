@@ -21,6 +21,9 @@ interface DAO {
     @Delete
     suspend fun deleteMed(note:RoomEntity)
 
+    @Query("UPDATE medicine_table SET stock=:stock WHERE id =:id ")
+    fun updatestock(stock:Int, id:Int)
+
 //    @Query("SELECT * FROM medicine_table WHERE medicineName LIKE :searchQuery or dose LIKE :searchQuery or stock LIKE :searchQuery")
 //    fun searchData(searchQuery:String): Flow<List<RoomEntity>>
 

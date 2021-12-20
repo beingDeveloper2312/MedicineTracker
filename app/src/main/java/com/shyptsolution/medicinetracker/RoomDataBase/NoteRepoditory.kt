@@ -22,6 +22,10 @@ class NoteRepoditory(var noteDao:DAO) :BaseFragment(){
         noteDao.deleteMed(note)
     }
 
+    fun updatestock(stock:Int , id:Int){
+        noteDao.updatestock(stock,id)
+    }
+
 //    suspend fun search(searchQuer:String){
 //        var searchList:Flow<List<RoomEntity>> =DataBase(this).getDao().searchData(searchQuer)
 //        return searchList
