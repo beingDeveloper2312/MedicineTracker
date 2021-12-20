@@ -40,7 +40,7 @@ class myBroadcastReceiver:BroadcastReceiver() {
             Timer().schedule(object : TimerTask() {
                 override fun run() {
                     if(Build.VERSION.SDK_INT>=23) {
-                        MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+1,Date().day,message.toString())
+                        MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+2,Date().day,"Your Medicine")
                     }
                 }
             }, 60000)
@@ -51,15 +51,15 @@ class myBroadcastReceiver:BroadcastReceiver() {
             Toast.makeText(context,"Snoozed For Five Minutes",Toast.LENGTH_LONG).show()
 
             val MainAct=SaveData(context)
-            var message=intent.getStringExtra("MedName")
+            var message=intent.getStringExtra("MedNam")
 
-            var number=intent.getIntExtra("EXTRA_NOTIFICATION_ID",0)
+            var number=intent.getIntExtra("EXTRA_NOTIFICATION_I",0)
             Notification().dismiss(context,number )
 //            Toast.makeText(context,"${number} in snooze 1",Toast.LENGTH_SHORT).show()
             Timer().schedule(object : TimerTask() {
                 override fun run() {
                     if(Build.VERSION.SDK_INT>=23) {
-                        MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+1,Date().day,message.toString())
+                        MainAct.SetAlarm(Calendar.HOUR_OF_DAY, Calendar.MINUTE+2,Date().day,"Your Medicine")
                     }
                 }
             }, 240000)

@@ -82,12 +82,15 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
 //                    var intent = Intent(this, AddNew::class.java)
 //                    this.startActivity(intent)
                     StoreOnline()
+                    Toast.makeText(this,"Saved To Cloud",Toast.LENGTH_SHORT).show()
 //                    val popTime = SyncNow()
 //                    var fgm = supportFragmentManager
 //                    popTime.show(fgm, "Sync Now")
                 }
                 R.id.download->{
                     getfromdatabase()
+                    Toast.makeText(this,"Successfully Fetched From Cloud",Toast.LENGTH_SHORT).show()
+
                 }
 
 
@@ -153,17 +156,17 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
                     var saturday=document.getBoolean("saturday").toString().toBoolean()
                     var sunday=document.getBoolean("sunday").toString().toBoolean()
 //
-                    Toast.makeText(this,"id is ${idd}",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this,"id is ${idd}",Toast.LENGTH_SHORT).show()
                     var note=RoomEntity(medicineName.toString(),time.toString(),hour,minute,dose.toString(),stock.toString(),monday,tuesday,wednesday
                     ,thursday,friday,saturday,sunday)
 //                    hashmap.set(idd,note)
                     hashmap[idd]=note
                 }
-                Toast.makeText(this,"${hashmap.size} hashmap ka size",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this,"${hashmap.size} hashmap ka size",Toast.LENGTH_SHORT).show()
                 var alreadyexist=HashMap<Int,Boolean>()
                 viewModel.allNotes.observe(this, Observer {list->
                     list?.let {
-                        Toast.makeText(this, "${it.size} it ka size", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this, "${it.size} it ka size", Toast.LENGTH_SHORT).show()
 
                         // Create a new user with a first and last name
 
@@ -192,19 +195,16 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
                     }
 
                 })
-                Toast.makeText(this,"${alreadyexist.size} already exist ka size",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this,"${alreadyexist.size} already exist ka size",Toast.LENGTH_SHORT).show()
 
                 for ((key, value) in hashmap.entries) {
                     if(!alreadyexist.containsKey(key)){
                         viewModel.insertNote(value)
-                        Toast.makeText(this,"${key}",Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this,"${key}",Toast.LENGTH_SHORT).show()
                     }
-                    else{
-                        Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show()
 
-                    }
                 }
-                Toast.makeText(this,"${hashmap.size} hashmap ka size",Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this,"${hashmap.size} hashmap ka size",Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { exception ->
                 Log.w("TAG", "Error getting documents: ", exception)
@@ -236,7 +236,7 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
     fun uploadtodatabase(){
         viewModel.allNotes.observe(this, Observer {list->
             list?.let {
-                Toast.makeText(this, "${it.size} it ka size", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this, "${it.size} it ka size", Toast.LENGTH_SHORT).show()
 
                 // Create a new user with a first and last name
 

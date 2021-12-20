@@ -58,8 +58,8 @@ class Notification:BaseFragment() {
         snoozeIntent.putExtra("Number","${number}")
         val snoozeIntent1 = Intent(context, myBroadcastReceiver::class.java).apply {
             action ="Snooze1"
-            putExtra("EXTRA_NOTIFICATION_ID", "${ number }")
-            putExtra("MedName",message)
+            putExtra("EXTRA_NOTIFICATION_I", "${ number }")
+            putExtra("MedNam",message)
         }
             val vibe = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 //            vibe.vibrate(1000)
