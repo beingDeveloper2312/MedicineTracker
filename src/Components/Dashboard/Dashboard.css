@@ -10,8 +10,10 @@
     background-color: var(--material-blue);
     height: 10vh;
     display: flex;
+    justify-content: space-between;
     width: 100vw;
     align-items: center;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .appbar--heading {
@@ -57,4 +59,25 @@
 
 .menu--icon {
     font-size: 4rem;
+}
+
+.save__med {
+    cursor: pointer;
+    border-radius: 1rem;
+    border: none;
+    background-color: transparent;
+    padding: 1rem 2rem;
+    transition: all 0.3s ease-in;
+    box-shadow: 0.5rem 0 2rem rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 2rem;
+}
+
+.firestore {
+    margin-right: 1rem;
+    display: flex;
+    column-gap: 2rem;
+}
+.save__med:hover {
+    transform: translateY(-3px);
 }

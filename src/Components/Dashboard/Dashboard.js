@@ -11,12 +11,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
-import { auth } from '../../Firebase/Firebase';
+import { auth, db } from '../../Firebase/Firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { medList } from '../../Atoms/medAtom';
+
 import { currentUserState } from '../../Atoms/userAtom';
 import './Dashboard.css';
 import Side from './Side';
@@ -50,6 +52,19 @@ const Dashboard = () => {
         setOpen(!open);
     };
 
+    const handleSave = () => {
+        meds.forEach(async (med, i) => {
+            const date = new Date();
+            const key = `${date.getFullYear()}${date.getMonth()}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}${date.getTime()}`;
+            try {
+                await setDoc(doc(db, currentUser.email, key), med);
+            } catch (e) {
+                console.log('error: ', e);
+            }
+        });
+    };
+
+    const handleFetch = () => {};
     return (
         <div className="dash">
             <header className="dash__appbar">
@@ -63,6 +78,14 @@ const Dashboard = () => {
                     )}
                 </IconButton>
                 <h1 className="appbar--heading"> Medicine Tracker</h1>
+                <div className="firestore">
+                    <button onClick={handleSave} className="save__med">
+                        Save
+                    </button>
+                    <button onClick={handleFetch} className="save__med">
+                        Fetch
+                    </button>
+                </div>
             </header>
             <main className="dash__content">
                 {open && <Side />}
