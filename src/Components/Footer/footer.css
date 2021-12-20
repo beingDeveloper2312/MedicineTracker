@@ -15,7 +15,7 @@
 }
 
 .social-icon,
-.menu {
+.menu-mob {
   position: relative;
   display: flex;
   justify-content: center;
@@ -60,4 +60,27 @@
   margin: 15px 0 10px 0;
   font-size: 1rem;
   font-weight: 300;
+}
+
+.social-icon,
+.menu-web {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+.menu-mob{
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+
+  .menu-mob{
+    display:block;
+    text-align: center;
+  }
+  .menu-web{
+    display: none;
+  }
 }

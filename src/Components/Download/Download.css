@@ -7,7 +7,7 @@
   display: inline-flex;
   width: 180px;
   height: 55px;
-  margin: 0 15px;
+  margin-left: 4%;
   perspective: 1000px;
 }
 .download-span a{
@@ -65,12 +65,17 @@
     font-size: 1.5vw;
     width: 30%;
 }
+
 .head-content h1{
     margin-top:8%;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 2.5vw;
     
+}
+.head-content p{
+  font-size: 1vw;
+  margin-left: 4%;
 }
 button{
   text-align: center;

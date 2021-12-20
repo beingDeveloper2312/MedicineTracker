@@ -6,6 +6,8 @@ const Card = (props) => {
         <div className="Card">
         <div className="Card-Content">
             <img src = {props.img} alt = "card-img" width="20%"/>
+            <br />
+            <br />
             <h2>{props.heading}</h2>
             <p>{props.content}</p>
         </div>
@@ -13,4 +15,4 @@ const Card = (props) => {
     )
 }
 
-export default Card
+export default Card;
