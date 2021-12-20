@@ -1,0 +1,28 @@
+Navbar{
+    padding: 2%;
+}
+.navbar-custom {
+    font-size: large;
+}
+.navbar__logo {
+    border-radius: 50%;
+    cursor: pointer;
+}
+Nav{
+    text-decoration: none;
+}
+.navbar__link{
+    text-decoration: none;
+    color: rgb(133, 132, 132);
+}
+.mob-app{
+    display: none;
+}
+@media only screen and (max-width: 768px) {
+    .web-app{
+        display: none;
+    }
+    .mob-app{
+        display: inline-block;
+    }
+}

@@ -2,15 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600;800&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
 
-span{
+.web-head span{
   position: relative;
   display: inline-flex;
   width: 180px;
   height: 55px;
   margin: 0 15px;
   perspective: 1000px;
+  text-decoration: none;
 }
-span a{
+.web-head span a{
   font-size: 19px;
   letter-spacing: 1px;
   transform-style: preserve-3d;
@@ -19,10 +20,10 @@ span a{
   font-family: 'Montserrat', sans-serif;
   
 }
-span a:before,
-span a:after{
+.web-head span a:before,
+.web-head span a:after{
   position: absolute;
-  content: "Register";
+  content: "Register/Login";
   height: 55px;
   width: 180px;
   display: flex;
@@ -32,20 +33,22 @@ span a:after{
   box-sizing: border-box;
   border-radius: 5px;
 }
-span a:before{
+.web-head span a:before{
   color: #fff;
   background: #000;
   transform: rotateY(0deg) translateZ(25px);
 }
-span a:after{
+.web-head span a:after{
   color: #000;
   transform: rotateX(90deg) translateZ(25px);
 }
-span a:hover{
+.web-head span a:hover{
   transform: translateZ(-25px) rotateX(-90deg);
 }
-
-
+.navbar_link{
+  text-decoration: none;
+  margin-left: 1%;
+}
 .heading{
     display: flex;
     justify-content: space-around;
@@ -58,18 +61,22 @@ span a:hover{
       margin-left: 1%;
         
 }
-.head-content{
+.web-head .head-content{
     
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 1.5vw;
     width: 40%;
 }
-.head-content h1{
+.web-head .head-content h1{
     margin-top:8%;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 2.5vw;
+}
+.web-head .head-content p{
+   font-size: 1vw;
+   margin-left: 4%;
 }
 button{
   text-align: center;

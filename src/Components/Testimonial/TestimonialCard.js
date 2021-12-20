@@ -1,17 +1,22 @@
 import React from "react";
 import "./Testimonial.css";
-import Image from "./TestimonialAssets/Group 5.svg";
-const TestimonialCard = () => {
+
+const TestimonialCard = (props) => {
     return (
         <div className="te-card">
           
           <div className="myCarousel">
-           <img src={Image} width = "20%"/>
-            <h3>Shirley Fultz</h3>
-            <h4>Designer</h4>
+           <img src={props.Image} width = "20%"/>
+            <h3>{props.name}</h3>
+            <h4>{props.desg}</h4>
+            <br />
             <p>
-              It's freeing to be able to catch up on customized news and not be
-              distracted by a social media element on the same site
+              <a href = {props.lin} className="si">
+              <ion-icon className = "social-icon__link" name="logo-linkedin"></ion-icon>
+                </a>
+              <a className="si" href = {props.twit}>
+              <ion-icon name="logo-twitter"></ion-icon>
+                </a>
             </p>
           </div>
         </div>
