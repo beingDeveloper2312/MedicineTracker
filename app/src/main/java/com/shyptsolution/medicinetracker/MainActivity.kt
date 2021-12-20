@@ -105,7 +105,7 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.
                 for (notes in it) {
                     if (hour <= notes.hour && minutes <= notes.minute) {
 //                        Toast.makeText(this,"${notes.hour}+${notes.minute}",Toast.LENGTH_SHORT).show()
-                        SaveData(this).SetAlarm(notes.hour, notes.minute, 0, notes.medicineName)
+                        SaveData(this).SetAlarm(notes.hour, notes.minute, 0, notes.medicineName,notes)
                     }
 
 
@@ -256,94 +256,9 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.
 
     override fun onItemEdited(note: RoomEntity) {
 
-//        super.onItemEdited(note)
+
     }
-
-//    fun onrepeat(context: Context){
-//        var viewmode=ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
-//        Toast.makeText(context,"Inside Main Activity",Toast.LENGTH_SHORT).show()
-//        viewmode.todayNotes.observe(this, Observer {list->
-//            list?.let {
-//
-//                var hashMap=HashMap<Int,Boolean>()
-//                var hour= Date().hours
-//                var minutes= Date().minutes
-//                for(notes in it){
-//                    if(hour<= notes.hour && minutes <=notes.minute){
-////                        Toast.makeText(this,"${notes.hour}+${notes.minute}",Toast.LENGTH_SHORT).show()
-//                        SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
-//                    }
-//
-//
-//                }
-////                Toast.makeText(this,"Size in Home "+it.size.toString(),Toast.LENGTH_LONG).show()
-////                for (notes in it){
-////                    if(!hashMap.containsKey(notes.id)){
-////                        SaveData(this).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
-////                        hashMap.set(notes.id,true)
-////                    }
-////
-////                }
-//
-//
-//            }
-//
-//        })
-//    }
-
-    //    fun setAllToday(context: Context){
-//
-//
-//        Toast.makeText(context,"Alarm Set For Today",Toast.LENGTH_SHORT).show()
-//        var hashMap= java.util.HashMap<Int, Boolean>()
-//        viewModel.todayNotes.observe(this, Observer {list->
-//            list?.let {
-//                var hour= Calendar.HOUR
-//                var minutes= Calendar.MINUTE
-//                for(notes in it){
-//                    if(hour<= notes.hour && minutes <=notes.minute){
-//                        SaveData(context).SetAlarm(notes.hour,notes.minute,0,notes.medicineName)
-//                    }
-//
-//
-//                }
-//
-//            }
-//
-//        })
-//    }
     fun finishApp() {
         finishAffinity()
     }
-
-//    fun SaveToCloud(context: Context) {
-//        var mAuth = FirebaseAuth.getInstance()
-//
-//        // Create a new user with a first and last name
-//        val user = hashMapOf(
-//            "first" to "Ada",
-//            "last" to "Lovelace",
-//            "born" to 1815
-//        )
-//
-//// Add a new document with a generated ID
-//        db.collection("users")
-//            .add(user)
-//            .addOnSuccessListener { documentReference ->
-////                launch {
-//////                    val newnote = DataBase(this@MainActivity).getDao().getAllNotes()
-//
-//////
-//////
-//////        }
-////                }
-//                var onlinedata=DashBoardAdapter(context,this).databasenotes()
-//                Toast.makeText(context, "${onlinedata.size}", Toast.LENGTH_SHORT).show()
-//            }
-//            .addOnFailureListener { e ->
-//
-//            }
-//
-//
-//    }
 }

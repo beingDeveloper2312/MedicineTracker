@@ -179,7 +179,7 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
 
     fun setAlarm(hour:Int,Minutes: Int,medName:String){
 //        Toast.makeText(this,"Snoozed for Five Minutes",Toast.LENGTH_LONG).show()
-        SaveData(this).SetAlarm(hour,Minutes, Calendar.DAY_OF_WEEK,medName)
+//        SaveData(this).SetAlarm(hour,Minutes, Calendar.DAY_OF_WEEK,medName)
 
     }
 }
