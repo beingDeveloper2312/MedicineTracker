@@ -20,10 +20,25 @@
     color: #fff;
 }
 
+.dash__heading {
+    padding: 1rem;
+    background-color: var(--blue);
+    font-size: 3rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0.5rem 0 2rem rgba(0, 0, 0, 0.3);
+}
+
 .dash__content {
     display: flex;
     min-width: 100vw;
+    min-height: 90vh;
 }
+
+.dash__med--list {
+    padding: 2rem;
+}
+
 .dash__drawer {
     box-shadow: 0.5rem 0 1rem rgba(0, 0, 0, 0.158);
     transition: all 0.5s ease-out;
