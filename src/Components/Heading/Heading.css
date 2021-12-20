@@ -9,6 +9,7 @@
   height: 55px;
   margin: 0 15px;
   perspective: 1000px;
+  text-decoration: none;
 }
 .web-head span a{
   font-size: 19px;
@@ -44,14 +45,9 @@
 .web-head span a:hover{
   transform: translateZ(-25px) rotateX(-90deg);
 }
-
-.mob-head span{
-  position: relative;
-  display: inline-flex;
-  width: 30%;
-  margin: 0 1%;
-  font-size: 20px;
-  
+.navbar_link{
+  text-decoration: none;
+  margin-left: 1%;
 }
 .heading{
     display: flex;

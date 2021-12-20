@@ -5,32 +5,37 @@ import Services from './Components/Services/Services';
 import Footer from './Components/Footer/Footer';
 import Download from './Components/Download/Download';
 import Testimonial from './Components/Testimonial/Testimonial';
-import TopNav from './Components/TopNav/TopNav'
+// import TopNav from './Components/TopNav/TopNav'
 
 import { HeadMob } from './Components/Heading-mob/HeadMob';
+import { DownMob } from './Components/Download-mob/DownMob';
+import NavBar from './Components/NavBar2/NavBar';
+
 function App() {
     return (
         <div className="App">
+            <NavBar />
+            <div className='mob'>
+                <HeadMob />
+            </div>
+
             <div className='web'>
-            <TopNav />
             <Heading />
+            </div>
             <br />
             <Services />
             <br />
-            <Download />
-            <Testimonial />
-            <br />
-            <Footer />
-            </div>
             <div className='mob'>
-               <HeadMob />
-               <br />
-               <Services />
-               <br />
-               <Testimonial />
-            <br />
-            <Footer />
+                <DownMob />
+                <br />
+                <br />
             </div>
+            <div className='web'>
+               <Download />
+            </div>
+            <Testimonial />
+            <Footer />
+            
         </div>
     );
 }
