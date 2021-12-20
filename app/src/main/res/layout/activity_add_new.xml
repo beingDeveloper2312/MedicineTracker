@@ -16,7 +16,7 @@
         android:layout_marginRight="20dp"
         android:ems="10"
         android:focusable="auto"
-        android:fontFamily="@font/robotolight"
+        android:fontFamily="@font/robotoregular"
         android:gravity="start|top"
         android:hint="Medicine Name"
         android:inputType="textLongMessage"
