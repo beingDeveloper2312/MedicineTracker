@@ -2,6 +2,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DoneIcon from '@mui/icons-material/Done';
 import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
 import { medList } from '../../Atoms/medAtom';
 import './Post.css';
 import { useState } from 'react';
@@ -21,13 +22,11 @@ const Post = () => {
         sunday: false,
     });
 
-    const [timeHour, setTimeHour] = useState();
+    const [timeHour, setTimeHour] = useState({});
     const handleAdd = () => {
         console.log('handleAdd');
-        setTimeHour({
-            hour: Number(time.slice(0, 2)),
-            minute: Number(time.slice(3, 2)),
-        });
+
+        const date = new Date();
         const med = {
             name,
             dose,
@@ -35,15 +34,20 @@ const Post = () => {
             time,
             ...days,
             ...timeHour,
+            id: Number(
+                `${date.getFullYear()}${date.getMonth()}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}${date.getTime()}`
+            ),
         };
         setMedList((prev) => {
             return [...prev, med];
         });
+        console.log(meds);
         handleClean();
     };
 
     const handleClean = () => {
         console.log('handleClean');
+        setTimeHour({});
         setTime('');
         setDose('');
         setName('');
@@ -58,7 +62,12 @@ const Post = () => {
             sunday: false,
         });
     };
-
+    useEffect(() => {
+        setTimeHour({
+            hour: Number(`${time[0]}${time[1]}`),
+            minute: Number(`${time[3]}${time[4]}`),
+        });
+    }, [time, setTime]);
     const handleCheckbox = (e) => {
         const bool = e.target.checked;
         const key = e.target.closest('.checkbox').dataset.day;
@@ -92,7 +101,9 @@ const Post = () => {
             />
             <input
                 placeholder="Set Time"
-                onChange={(e) => setTime(e.target.value)}
+                onChange={(e) => {
+                    setTime(e.target.value);
+                }}
                 value={time}
                 className="med__input med__time"
                 type="time"

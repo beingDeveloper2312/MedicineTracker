@@ -1,16 +1,7 @@
-import {
-    Box,
-    Drawer,
-    Typography,
-    Toolbar,
-    IconButton,
-    Button,
-} from '@mui/material';
+import { IconButton } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
-import CancelIcon from '@mui/icons-material/Cancel';
 import CloseIcon from '@mui/icons-material/Close';
-import DoneIcon from '@mui/icons-material/Done';
 import { auth, db } from '../../Firebase/Firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
@@ -54,6 +45,7 @@ const Dashboard = () => {
 
     const handleSave = () => {
         meds.forEach(async (med, i) => {
+            console.log(med);
             const date = new Date();
             const key = `${date.getFullYear()}${date.getMonth()}${date.getDate()}${date.getHours()}${date.getMinutes()}${date.getSeconds()}${date.getTime()}`;
             try {
