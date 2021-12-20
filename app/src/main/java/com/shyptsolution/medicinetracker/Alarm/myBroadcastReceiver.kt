@@ -54,7 +54,7 @@ class myBroadcastReceiver:BroadcastReceiver() {
 
             var number=intent.getIntExtra("EXTRA_NOTIFICATION_ID",0)
             Notification().dismiss(context,number )
-            Toast.makeText(context,"${number} in snooze 1",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context,"${number} in snooze 1",Toast.LENGTH_SHORT).show()
             Timer().schedule(object : TimerTask() {
                 override fun run() {
                     if(Build.VERSION.SDK_INT>=23) {
@@ -93,7 +93,7 @@ class myBroadcastReceiver:BroadcastReceiver() {
 
 //            Toast.makeText(context,"Inside Repeat",Toast.LENGTH_SHORT).show()
         }
-        else if(intent.action.equals("android.intent.category.DEFAULT")){
+        else if(intent.action.equals("android.intent.action.BOOT_COMPLETED\"")){
             Timer().schedule(object : TimerTask() {
                 override fun run() {
                     var inttent=Intent(context,MainActivity::class.java)

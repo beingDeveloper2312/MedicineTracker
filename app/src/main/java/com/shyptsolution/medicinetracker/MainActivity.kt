@@ -38,6 +38,8 @@ import com.shyptsolution.medicinetracker.RoomDataBase.DataBase
 import com.shyptsolution.medicinetracker.RoomDataBase.NoteViewModel
 import com.shyptsolution.medicinetracker.RoomDataBase.RoomEntity
 import com.shyptsolution.medicinetracker.add.AddNew
+import com.shyptsolution.medicinetracker.add.PopUpTime
+import com.shyptsolution.medicinetracker.add.SyncNow
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -155,7 +157,9 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter {
                     startActivity(k)
                 }
                 R.id.sync->{
-
+                    val popTime= SyncNow()
+                    var fgm=supportFragmentManager
+                    popTime.show(fgm,"Sync Now")
                 }
 
 

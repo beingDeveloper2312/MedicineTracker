@@ -1,5 +1,7 @@
 package com.shyptsolution.medicinetracker.add
 
+import android.app.Application
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,16 +21,15 @@ class PopUpTime:DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         var view=inflater.inflate(R.layout.popuptime,container,false)
-        var setTime=view.findViewById(R.id.setTime) as Button
-        var timepicker=view.findViewById(R.id.timePicker) as TimePicker
-        setTime.setOnClickListener {
+        var yes=view.findViewById(R.id.yesbutaon) as Button
+        var no=view.findViewById(R.id.nobutton) as Button
+        yes.setOnClickListener {
 
-            val MainAct=activity as AddNew
-            if(Build.VERSION.SDK_INT>=23) {
-//                MainAct.setTime(timepicker.hour, timepicker.minute)
+            startActivity(Intent(activity,MainActivity::class.java))
             }
+        no.setOnClickListener {
             this.dismiss()
-            }
+        }
         return view
     }
 

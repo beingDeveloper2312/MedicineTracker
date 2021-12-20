@@ -28,7 +28,7 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
       lateinit  var medName:EditText
     lateinit  var dose:EditText
     lateinit  var stock:EditText
-    lateinit  var time:TextView
+//    lateinit  var time:TextView
     lateinit  var mon:CheckBox
     lateinit  var tue:CheckBox
     lateinit var wed:CheckBox
@@ -63,7 +63,7 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
     private fun selectTime() {
         val popTime=PopUpTime()
         var fgm=supportFragmentManager
-        popTime.show(fgm,"fdsf")
+        popTime.show(fgm,"Are You Sure?")
     }
 
 //    fun setTime(Hours:Int,Minutes:Int){
@@ -108,8 +108,28 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
                     else{
                         hour=spinner.hour
                         minute=spinner.minute
+                        var time:String=""
+                        if(minute==0 && hour==0){
+            time=("00:00")
 
-                        var medicine=RoomEntity(medName.text.toString(),time.text.toString(),hour,minute,dose.text.toString(),stock.text.toString(),mon.isChecked,tue.isChecked,wed.isChecked,thu.isChecked,
+        }
+       else if (hour==0){
+            time=("00"+":"+minute.toString())
+
+        }
+        else if(minute==0){
+            time=(hour.toString()+":00")
+
+        }
+        else if(minute<10 && hour<10){
+            time="0${hour}:0${minute}"
+                        }
+
+        else{
+            time=(hour.toString()+":"+minute.toString())
+
+        }
+                        var medicine=RoomEntity(medName.text.toString(),time.toString(),hour,minute,dose.text.toString(),stock.text.toString(),mon.isChecked,tue.isChecked,wed.isChecked,thu.isChecked,
                             fri.isChecked,sat.isChecked,sun.isChecked)
 
 
@@ -131,8 +151,9 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
 
                 }
                 R.id.cancel->{
-                    var intent = Intent(this, MainActivity::class.java)
-                    this.startActivity(intent)
+                    selectTime()
+//                    var intent = Intent(this, MainActivity::class.java)
+//                    this.startActivity(intent)
 
                 }
             }

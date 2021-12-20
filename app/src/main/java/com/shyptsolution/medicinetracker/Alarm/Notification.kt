@@ -53,7 +53,7 @@ class Notification:BaseFragment() {
             val snoozeIntent = Intent(context, myBroadcastReceiver::class.java).apply {
                 action ="Snooze"
                 putExtra("EXTRA_NOTIFICATION_ID", "${ number }")
-                putExtra("MedName",message)
+                putExtra("MedName", "${ message }")
             }
         snoozeIntent.putExtra("Number","${number}")
         val snoozeIntent1 = Intent(context, myBroadcastReceiver::class.java).apply {
