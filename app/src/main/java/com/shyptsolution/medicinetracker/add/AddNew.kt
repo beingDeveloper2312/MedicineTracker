@@ -47,6 +47,7 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
 //        button.setOnClickListener {
 //            selectTime()
 //        }
+        supportActionBar?.title="Add New"
                  medName=findViewById<EditText>(R.id.medicineNameinput)
          dose=findViewById<EditText>(R.id.doseinput)
          stock=findViewById<EditText>(R.id.stockinput)

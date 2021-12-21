@@ -42,8 +42,7 @@ import javax.security.auth.callback.Callback
 
 
 class Notification:BaseFragment() {
-//   lateinit var  rawPathUri: Uri
-//   lateinit var r:Ringtone
+
     val NOTIFIYTAG="new request"
     @RequiresApi(Build.VERSION_CODES.P)
     fun Notify(context: Context, message:String, number:Int){
@@ -109,24 +108,24 @@ class Notification:BaseFragment() {
             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.ECLAIR) {
                 nm.notify(NOTIFIYTAG, number, builder.build())
 //            Toast.makeText(context,"In first", Toast.LENGTH_LONG).show()
+                try {
 
+                    var rawPathUri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.ringtone);
+                    var  r =RingtoneManager. getRingtone(context, rawPathUri)
+                    r.play()
+
+                } catch (e: Exception) {
+                    Toast.makeText(context,"${e}", Toast.LENGTH_LONG).show()
+
+                    e.printStackTrace()
+                }
             }else{
                 nm.notify(NOTIFIYTAG.hashCode(), builder.build())
 //            Toast.makeText(context,"In second",Toast.LENGTH_LONG).show()
 
             }
 
-//        try {
-//
-//            rawPathUri = Uri.parse("android.resource://" + context.packageName + "/" + R.raw.ringtone);
-//            r =RingtoneManager. getRingtone(context, rawPathUri)
-//            r.play()
-//
-//        } catch (e: Exception) {
-//            Toast.makeText(context,"${e}", Toast.LENGTH_LONG).show()
-//
-//            e.printStackTrace()
-//        }
+
 
 
 

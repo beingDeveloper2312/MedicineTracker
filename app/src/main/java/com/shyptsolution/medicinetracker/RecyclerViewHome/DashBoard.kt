@@ -41,6 +41,7 @@ class DashBoard : AppCompatActivity(), HomeAdapter.NotesAdapter, DashBoardAdapte
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter=adapter
+        supportActionBar?.title="DashBoar(All)"
 //        Toast.makeText(this,"Inside Dashboard",Toast.LENGTH_LONG).show()
         viewModel= ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)

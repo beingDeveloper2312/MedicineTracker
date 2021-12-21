@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
@@ -80,7 +81,7 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.
         //Recycler View Implemantation
         homeRecyclerView = findViewById(R.id.recyclerview)
         // Create a new user with a first and last name
-
+        supportActionBar?.title="Medicines To Take Today"
 
 //        launch {
 //            val newnote=DataBase(this@MainActivity).getDao().getAllNotes()
@@ -245,7 +246,8 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.
                 description = descriptionText
             }
             channel.enableLights(true)
-            channel.sound
+
+//            channel.setSound(Uri.parse("android.resource://" + this.packageName + "/" + R.raw.ringtone),AudioAttributes.USAGE_ALARM)
             // Register the channel with the system
             val notificationManager: NotificationManager =
                 getSystemService(NOTIFICATION_SERVICE) as NotificationManager
