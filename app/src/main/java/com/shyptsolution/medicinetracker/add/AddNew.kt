@@ -106,6 +106,10 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
                         medName.error="Medicine Name Required"
                         medName.requestFocus()
                     }
+                    else if(stock.text.toString().isEmpty()){
+                        stock.error="Medicine Name Required"
+                        stock.requestFocus()
+                    }
                     else{
                         hour=spinner.hour
                         minute=spinner.minute

@@ -105,7 +105,13 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.
                 for (notes in it) {
                     if (hour <= notes.hour && minutes <= notes.minute) {
 //                        Toast.makeText(this,"${notes.hour}+${notes.minute}",Toast.LENGTH_SHORT).show()
-                        SaveData(this).SetAlarm(notes.hour, notes.minute, 0, notes.medicineName,notes)
+//                        updatesotck(notes.id, notes.stock.toInt())
+                        SaveData(this).SetAlarm(
+                            notes.hour,
+                            notes.minute,
+                            0,
+                            notes.medicineName
+                        )
                     }
 
 
@@ -256,14 +262,19 @@ class MainActivity : BaseFragment(), HomeAdapter.NotesAdapter, DashBoardAdapter.
 
 
     }
+
     fun finishApp() {
         finishAffinity()
     }
 
-    fun updatesotck(stock:Int,id:Int){
-       var viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        ).get(NoteViewModel::class.java)
+    fun updatesotck(stock: Int, id: Int) {
+        Toast.makeText(this,"Inside upate",Toast.LENGTH_SHORT).show()
+//        var viewModel = ViewModelProvider(
+//            this,
+//            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+//        ).get(NoteViewModel::class.java)
+
+//        viewModel.updatestock(stock, id)
+//    }
     }
 }

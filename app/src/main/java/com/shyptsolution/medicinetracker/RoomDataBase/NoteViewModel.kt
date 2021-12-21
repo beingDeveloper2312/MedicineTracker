@@ -39,7 +39,8 @@ class NoteViewModel(application: Application) :AndroidViewModel(application) {
     }
 
     fun updatestock(stock:Int, id:Int){
-        repository.updatestock(stock,id)
+        Toast.makeText(getApplication(),"Inside viewmode",Toast.LENGTH_SHORT).show()
+//        repository.updatestock(stock,id)
     }
 
     fun getDayName(): LiveData<List<RoomEntity>> {

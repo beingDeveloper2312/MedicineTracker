@@ -43,7 +43,7 @@
         app:menu="@menu/home_menu"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/white"
-        android:background="@drawable/down3"
+        android:background="@drawable/down"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navheader"/>
 

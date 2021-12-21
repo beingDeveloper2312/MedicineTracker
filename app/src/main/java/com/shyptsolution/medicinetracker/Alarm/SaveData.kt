@@ -14,7 +14,7 @@ class SaveData {
     constructor(context: Context){
         this.context=context
     }
-    fun SetAlarm(hour:Int, minute:Int,day:Int, MedName:String, note:RoomEntity){
+    fun SetAlarm(hour:Int, minute:Int,day:Int, MedName:String){
         val calender=Calendar.getInstance()
 //        calender.set(Calendar.DAY_OF_WEEK,day)
         calender.set(Calendar.HOUR_OF_DAY,hour)
@@ -26,7 +26,8 @@ class SaveData {
         var intent= Intent(context,myBroadcastReceiver::class.java)
         intent.putExtra("Message","${MedName}")
         intent.putExtra("Number",number)
-
+//        intent.putExtra("id",id )
+//        intent.putExtra("stock",stock)
         intent.action=".Alarm"
         var pi=PendingIntent.getBroadcast(context,(0..2147483647).random(),intent,PendingIntent.FLAG_UPDATE_CURRENT)
 //        am.setRepeating(AlarmManager.RTC_WAKEUP,calender.timeInMillis,AlarmManager.INTERVAL_DAY,pi)

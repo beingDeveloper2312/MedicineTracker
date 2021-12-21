@@ -31,7 +31,9 @@ class myBroadcastReceiver:BroadcastReceiver() {
                 message=""
             }
                 notifyme.Notify(context, message,getNumber())
-//            MainActivity().updatesotck()
+//            var id=intent.getStringExtra("id")!!.toInt()
+//            var stock=intent.getStringExtra("stock")!!.toInt()
+//            MainActivity().updatesotck(id,stock)
 
         }
         else if(intent.action.equals("Snooze")){

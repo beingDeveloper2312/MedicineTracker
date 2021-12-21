@@ -1,6 +1,7 @@
 package com.shyptsolution.medicinetracker.RoomDataBase
 
 import android.provider.ContactsContract
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import java.util.concurrent.Flow
@@ -23,7 +24,8 @@ class NoteRepoditory(var noteDao:DAO) :BaseFragment(){
     }
 
     fun updatestock(stock:Int , id:Int){
-        noteDao.updatestock(stock,id)
+        Toast.makeText(this,"inside note repo",Toast.LENGTH_SHORT).show()
+        noteDao.updatestock((stock-1),id)
     }
 
 //    suspend fun search(searchQuer:String){
