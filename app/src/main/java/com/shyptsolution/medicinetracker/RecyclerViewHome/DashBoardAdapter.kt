@@ -3,9 +3,11 @@ package com.shyptsolution.medicinetracker.RecyclerViewHome
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -24,6 +26,19 @@ class DashBoardAdapter (cont: Context, var listener: DashBoardAdapter.dashboard)
         var time=itemView.findViewById<TextView>(R.id.TimeAlloted)
         var deletebutton=itemView.findViewById<ImageView>(R.id.deletebutton)
         var editbutton=itemView.findViewById<ImageView>(R.id.editbutton)
+        var monday=itemView.findViewById<CheckBox>(R.id.monday)
+        var tuesday=itemView.findViewById<CheckBox>(R.id.tuesday)
+
+        var wednesday=itemView.findViewById<CheckBox>(R.id.wednesday)
+
+        var thurday=itemView.findViewById<CheckBox>(R.id.thursday)
+
+        var friday=itemView.findViewById<CheckBox>(R.id.friday)
+
+        var saturday=itemView.findViewById<CheckBox>(R.id.saturday)
+        var sunday=itemView.findViewById<CheckBox>(R.id.sunday)
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -39,7 +54,20 @@ class DashBoardAdapter (cont: Context, var listener: DashBoardAdapter.dashboard)
         holder.medicineName.setText(ReminderList[position].medicineName)
         holder.dose.setText(ReminderList[position].dose)
         holder.stock.setText(ReminderList[position].stock)
-
+        holder.monday.isChecked=ReminderList[position].monday
+        holder.monday.isClickable=false
+        holder.tuesday.isChecked=ReminderList[position].tuesday
+        holder.tuesday.isClickable=false
+        holder.wednesday.isChecked=ReminderList[position].wednesday
+        holder.wednesday.isClickable=false
+        holder.thurday.isChecked=ReminderList[position].thursday
+        holder.thurday.isClickable=false
+        holder.friday.isChecked=ReminderList[position].friday
+        holder.friday.isClickable=false
+        holder.saturday.isChecked=ReminderList[position].saturday
+        holder.saturday.isClickable=false
+        holder.sunday.isChecked=ReminderList[position].sunday
+        holder.sunday.isClickable=false
         holder.time.setText(ReminderList[position].time)
 
         holder.deletebutton.setOnClickListener {
