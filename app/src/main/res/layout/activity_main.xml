@@ -6,7 +6,7 @@
     android:id="@+id/mainactivity"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/backgrd">
+    android:background="@drawable/down4">
 
 
 
@@ -41,6 +41,9 @@
         android:id="@+id/navmenu"
         android:layout_gravity="start"
         app:menu="@menu/home_menu"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        android:background="@drawable/down3"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/navheader"/>
 

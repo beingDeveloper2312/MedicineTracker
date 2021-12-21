@@ -1,5 +1,6 @@
 package com.shyptsolution.medicinetracker.add
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -151,8 +152,36 @@ class AddNew : BaseFragment(),HomeAdapter.NotesAdapter {
 
                 }
                 R.id.cancel->{
-                    selectTime()
-//                    var intent = Intent(this, MainActivity::class.java)
+
+
+                    val builder = AlertDialog.Builder(this)
+                    //set title for alert dialog
+                    builder.setTitle("Are You Sure?")
+                    //set message for alert dialog
+                    builder.setMessage("Tap Yes To Discard This Reminder.")
+                    builder.setIcon(R.drawable.ic_baseline_delete_24)
+
+                    //performing positive action
+                    builder.setPositiveButton("Yes"){dialogInterface, which ->
+//                Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this,MainActivity::class.java))
+                    }
+                    //performing cancel action
+//            builder.setNeutralButton("Cancel"){dialogInterface , which ->
+//                Toast.makeText(context,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
+//            }
+                    //performing negative action
+                    builder.setNegativeButton("No"){dialogInterface, which ->
+//                Toast.makeText(context,"clicked No",Toast.LENGTH_LONG).show()
+                    }
+                    // Create the AlertDialog
+                    val alertDialog: AlertDialog = builder.create()
+                    // Set other dialog properties
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
+//                    selectTime()
+//                    var intent =
+                //                    Intent(this, MainActivity::class.java)
 //                    this.startActivity(intent)
 
                 }

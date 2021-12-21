@@ -6,14 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@drawable/background"
     android:orientation="vertical"
+    android:background="@drawable/newbackground"
     android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/maincard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background"
+
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,7 +28,7 @@
                 android:id="@+id/MedName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_margin="5dp"
                 android:fontFamily="@font/robotomedium"
                 android:text="MedName"
                 android:textAlignment="center"
